@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<title>點點雲 - DOTDOT GLOBAL</title>
+<meta name="description" content="致力於提供零售、餐飲、旅館和商場一站式O2O解決方案的公司。提供LINE智慧餐飲的解決方案，協助餐飲門市轉型智慧門店，提高營運效率，更聰明的經營餐廳。台灣最大的出國旅遊上網品牌，提供全球136國WiFi機租借服務，讓每個人的旅行能更加的便利與美好。" />
+<meta name="keywords" content="WiFi,WiFi行銷,免費WiFi,AP,行銷路由,無線分享器,熱點,熱點活動,社群行銷,口碑行銷,O2O,POS,facebook,粉絲團,wechat,line,QQ,微信,微博,instagram,登入,會員,會員卡,點數,抽獎,打卡,按讚,廣告,Ad WiFi,活動宣傳,問卷,優惠卷,留言板,物聯網,餐廳,咖啡店,飯店,民宿,會議,研討會,購物中心,點餐,零售,線上點餐,行動點餐,掃碼點餐,自助點餐,餐飲平台,美食平台,美食街" />
+
+<meta property="og:title" content="點點雲 - DOTDOT GLOBAL" />
+<meta property="og:description" content="致力於提供零售、餐飲、旅館和商場一站式O2O解決方案的公司。提供LINE智慧餐飲的解決方案，協助餐飲門市轉型智慧門店，提高營運效率，更聰明的經營餐廳。台灣最大的出國旅遊上網品牌，提供全球136國WiFi機租借服務，讓每個人的旅行能更加的便利與美好。" />
+<meta property="og:url" content="https://dotdot.cc/" />
+<meta property="og:image" content="https://dotdot.cc/images/banner.jpg" />
+<meta property="og:type" content="website" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" type="image/png" href="https://dotdot.cc/images/favicon.ico">
+<link rel="stylesheet" href="css/standard.css">
+
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script src="https://kit.fontawesome.com/488bab161f.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/layout.js"></script>
+</head>
+ 
+<body>
+<div class="body-container">
+    <section class="quickpay-admin">
+        <div class="top-bar">
+            <h1>權限管理</h1>
+
+            <div class="nav">
+                <a href="notice.html">
+                    <i class="fa-solid fa-bell"></i>
+                    <b class="num">10</b>
+                </a>
+
+                <a href="#"><i class="icon-menu"></i></a>
+            </div>
+        </div>
+
+        <div class="main-container admin">
+            <div class="search-bar">
+                <input type="text" placeholder="搜尋">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="admin-title">
+                <div class="name">姓名</div>
+                <div>權限</div>
+                <div class="sysbtn"><a class="popup" rel="admin-type">權限類型</a></div>
+            </div>
+
+            <div class="admin-list">
+                <div class="name">陳小明</div>
+                <div>管理員</div>
+                <div class="sysbtn">
+                    <a class="popup edit" rel="admin-edit"><i class="fa-solid fa-pen"></i></a>
+                    <a class="popup delete" rel="admin-delete"><i class="fa-solid fa-trash"></i></a>
+                </div>
+            </div><!-- END .admin-list -->
+
+            <div class="admin-list">
+                <div class="name">陳小明</div>
+                <div>帳務人員</div>
+                <div class="sysbtn">
+                    <a class="popup edit" rel="admin-edit"><i class="fa-solid fa-pen"></i></a>
+                    <a class="popup delete" rel="admin-delete"><i class="fa-solid fa-trash"></i></a>
+                </div>
+            </div><!-- END .admin-list -->
+
+            <a class="popup btn-add" rel="admin-add"><i class="fa-solid fa-plus"></i>新增管理員</a>
+        </div><!-- END .main-container -->
+
+        <div class="bottom-nav">
+            <a href="quickpay.html">
+                <i class="icon-store"></i>
+                <div>店家櫃檯</div>
+            </a>
+
+            <a href="quickpay-record.html">
+                <i class="fa-solid fa-list-ul"></i>
+                <div>交易紀錄</div>
+            </a>
+
+            <a class="current" href="quickpay-admin.html">
+                <i class="icon-admin"></i>
+                <div>權限管理</div>
+            </a>
+        </div>
+    </section>
+</div>
+
+<!-- 權限類型 -->
+<div class="popup-theme" id="admin-type">
+    <div class="overlay-bg"></div>
+
+    <div class="popup-container">
+        <a class="popup-close-x"><i class="icon-close fa-solid fa-xmark"></i></a>
+
+        <div class="popup-content">
+            <h3>權限類型</h3>
+
+            <div class="type-group">
+                <h4>管理員</h4>
+                <span><i class="fa-solid fa-check"></i>編輯權限</span>
+                <span><i class="fa-solid fa-check"></i>編輯資料</span>
+                <span><i class="fa-solid fa-check"></i>提領</span>
+                <span><i class="fa-solid fa-check"></i>活動</span>
+            </div>
+
+            <div class="type-group">
+                <h4>帳務人員</h4>
+                <span><i class="fa-solid fa-check"></i>編輯資料</span>
+                <span><i class="fa-solid fa-check"></i>提領</span>
+            </div>
+
+            <div class="type-group">
+                <h4>操作人員</h4>
+                <span><i class="fa-solid fa-check"></i>唯讀</span>
+            </div>
+
+            <div class="btns">
+                <button class="orange-btn full-btn popup-close" type="button">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 新增權限 -->
+<div class="popup-theme" id="admin-add">
+    <div class="overlay-bg"></div>
+
+    <div class="popup-container">
+        <a class="popup-close-x"><i class="icon-close fa-solid fa-xmark"></i></a>
+
+        <div class="popup-content">
+            <h3>新增權限</h3>
+
+            <div class="form-column">
+                <div class="left">
+                    <i class="fa-solid fa-id-card"></i>
+                    <b>權限</b>
+                </div>
+                <div class="right">
+                    <select>
+                        <option selected>管理員</option>
+                        <option>帳務人員</option>
+                        <option>操作人員</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btns">
+                <a class="orange-btn full-btn popup-close" href="invite.html">產生連結</a>
+            </div>
+
+            <div class="form-column copy-link">
+                <div class="left">
+                    <a href="#"><i class="fa-solid fa-copy"></i></a>
+                    <a href="#"><i class="icon-line"></i></a>
+                </div>
+                <div class="right">
+                    <input type="text" readonly value="https://www.figma.com/file/CzgCVb1RurufEQfsdZyh98/%E2%98%81%EF%B8%8F-%E9%BB%9E%E9%BB%9E%E9%9B%B2?node-id=202%3A157">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 權限編輯 -->
+<div class="popup-theme" id="admin-edit">
+    <div class="overlay-bg"></div>
+
+    <div class="popup-container">
+        <a class="popup-close-x"><i class="icon-close fa-solid fa-xmark"></i></a>
+
+        <div class="popup-content">
+            <h3>權限編輯</h3>
+
+            <div class="form-column">
+                <div class="left">
+                    <i class="fa-solid fa-user-large"></i>
+                    <b>姓名</b>
+                </div>
+                <div class="right"><input type="text" value="陳小明"></div>
+            </div>
+
+            <div class="form-column">
+                <div class="left">
+                    <i class="fa-solid fa-id-card"></i>
+                    <b>權限</b>
+                </div>
+                <div class="right">
+                    <select>
+                        <option selected>管理員</option>
+                        <option>帳務人員</option>
+                        <option>操作人員</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btns">
+                <a class="popup-close">取消</a>
+                <button class="orange-btn popup-close" type="button">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 權限刪除？ -->
+<div class="popup-theme" id="admin-delete">
+    <div class="overlay-bg"></div>
+
+    <div class="popup-container">
+        <a class="popup-close-x"><i class="icon-close fa-solid fa-xmark"></i></a>
+
+        <div class="popup-content">
+            <div class="big-icon"><i class="fa-solid fa-xmark"></i></div>
+            <h4 align="center">確定刪除陳小明？</h4>
+            <p><br></p>
+
+            <div class="btns">
+                <a class="popup-close">取消</a>
+                <button class="red-btn popup-close" type="button">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+ 
+</html>
