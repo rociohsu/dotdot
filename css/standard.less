@@ -237,7 +237,9 @@ body { .font-family(14px); background: var(--color-bggray); }
 }
 
 /* 主要入口頁 */
-.top-bar { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; padding: 15px 20px;
+.top-bar { position: fixed; display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; width: 100%; max-width: 820px; margin: 0 auto; padding: 15px 20px; margin: 0 auto; top: 0; left: 0; right: 0; background: var(--color-white);
+    z-index: 1;
+
     > * { width: 100%; }
     > h1 { display: inline-flex; align-items: center; font-size: 24px; 
         i { margin-right: 5px; }
@@ -261,8 +263,9 @@ body { .font-family(14px); background: var(--color-bggray); }
     }
     .nav.left { justify-content: flex-start; }
 }
+.top-bar.bg-gray { background: var(--color-bggray); }
 
-.main-container { padding: 10px 20px; }
+.main-container { margin-top: 60px; padding: 10px 20px; }
 
 .bottom-nav { 
     position: fixed; width: 100%; max-width: 820px; height: 90px; margin: 0 auto; 
