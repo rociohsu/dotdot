@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<title>點點雲 - DOTDOT GLOBAL</title>
+<meta name="description" content="致力於提供零售、餐飲、旅館和商場一站式O2O解決方案的公司。提供LINE智慧餐飲的解決方案，協助餐飲門市轉型智慧門店，提高營運效率，更聰明的經營餐廳。台灣最大的出國旅遊上網品牌，提供全球136國WiFi機租借服務，讓每個人的旅行能更加的便利與美好。" />
+<meta name="keywords" content="WiFi,WiFi行銷,免費WiFi,AP,行銷路由,無線分享器,熱點,熱點活動,社群行銷,口碑行銷,O2O,POS,facebook,粉絲團,wechat,line,QQ,微信,微博,instagram,登入,會員,會員卡,點數,抽獎,打卡,按讚,廣告,Ad WiFi,活動宣傳,問卷,優惠卷,留言板,物聯網,餐廳,咖啡店,飯店,民宿,會議,研討會,購物中心,點餐,零售,線上點餐,行動點餐,掃碼點餐,自助點餐,餐飲平台,美食平台,美食街" />
+
+<meta property="og:title" content="點點雲 - DOTDOT GLOBAL" />
+<meta property="og:description" content="致力於提供零售、餐飲、旅館和商場一站式O2O解決方案的公司。提供LINE智慧餐飲的解決方案，協助餐飲門市轉型智慧門店，提高營運效率，更聰明的經營餐廳。台灣最大的出國旅遊上網品牌，提供全球136國WiFi機租借服務，讓每個人的旅行能更加的便利與美好。" />
+<meta property="og:url" content="https://dotdot.cc/" />
+<meta property="og:image" content="https://dotdot.cc/images/banner.jpg" />
+<meta property="og:type" content="website" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="shortcut icon" type="image/png" href="https://dotdot.cc/images/favicon.ico">
+<link rel="stylesheet" href="../css/standard.css">
+
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script src="https://kit.fontawesome.com/488bab161f.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../js/layout.js"></script>
+</head>
+ 
+<body>
+<div class="body-container bg-gray">
+    <section class="topup">
+        <div class="top-bar bg-orange">
+            <h1>儲值金</h1>
+
+            <div class="nav">
+                <a href="../notice.html">
+                    <i class="fa-solid fa-bell"></i>
+                    <b class="num">10</b>
+                </a>
+
+                <a href="#"><i class="icon-menu"></i></a>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="circle-bg"></div>
+
+            <div class="banner">
+                <img src="../images/670x376.png">
+            </div>
+
+            <div class="store-list">
+                <!-- 已開啟自動儲值狀態, class加上auto -->
+                <div class="status auto"><i class="fa-solid fa-circle"></i> 自動儲值</div>
+                <div class="name">起家雞 總部</div>
+                <div class="money"><i class="fa-solid fa-dollar-sign"></i> 5000</div>
+                <div class="link">
+                    <a href="#">交易明細</a>
+                    <a class="popup" rel="auto-topup">自動儲值</a>
+                </div>
+                <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+            </div><!-- END .store-list -->
+
+            <div class="store-list">
+                <div class="status"><i class="fa-solid fa-circle"></i> 未開啟自動儲值</div>
+                <div class="name">50嵐 總部</div>
+                <div class="money"><i class="fa-solid fa-dollar-sign"></i> 2000</div>
+                <div class="link">
+                    <a href="#">交易明細</a>
+                    <a class="popup" rel="auto-topup-open">自動儲值</a>
+                </div>
+                <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+            </div><!-- END .store-list -->
+        </div><!-- END .main-container -->
+    </section>
+</div>
+
+<!-- 開啟自動儲值？ -->
+<div class="popup-theme" id="auto-topup-open">
+    <div class="popup-container">
+        <div class="overlay-bg-x"></div>
+
+        <div class="popup-content">
+            <div class="big-icon orange"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h4 align="center">開啟自動儲值？</h4>
+            <div align="center" class="gray-text">從此以後服務不間斷<br>
+                當儲值金低於 <span class="money"><i class="fa-solid fa-dollar-sign"></i> 1000</span> 時<br>
+                系統將自動儲值 <span class="money"><i class="fa-solid fa-dollar-sign"></i> 5000
+            </div>
+            <p><br></p>
+
+            <div class="btns">
+                <a class="popup-close">暫時不要</a>
+                <a class="orange-btn popup"  rel="auto-topup">前往開啟</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 已開啟自動儲值 -->
+<div class="popup-theme" id="auto-topup">
+    <div class="popup-container">
+        <div class="overlay-bg-x"></div>
+
+        <div class="popup-content">
+            <div class="big-icon green"><i class="fa-solid fa-check"></i></div>
+            <h4 align="center">已開啟自動儲值</h4>
+            <div align="center" class="gray-text">如需解除，請按下方「解除自動儲值」按鈕</div>
+            <p><br></p>
+
+            <div class="btns">
+                <a class="red-text popup" rel="auto-topup-cancel">解除自動儲值</a>
+                <a class="orange-btn popup-close" type="button">關閉</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 確定解除自動儲值？ -->
+<div class="popup-theme" id="auto-topup-cancel">
+    <div class="popup-container">
+        <div class="overlay-bg-x"></div>
+
+        <div class="popup-content">
+            <div class="big-icon"><i class="fa-solid fa-exclamation"></i></div>
+            <h4 align="center">確定解除自動儲值？</h4>
+            <div align="center" class="gray-text">當餘額不足時，部分服務可能會受到影響</div>
+            <p><br></p>
+
+            <div class="btns">
+                <a class="popup-close">取消</a>
+                <a class="red-btn popup"  rel="auto-topup-cancel-ok">確定解除</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 自動儲值解除成功 -->
+<div class="popup-theme" id="auto-topup-cancel-ok">
+    <div class="popup-container">
+        <div class="overlay-bg-x"></div>
+
+        <div class="popup-content">
+            <div class="big-icon green"><i class="fa-solid fa-check"></i></div>
+            <h4 align="center">自動儲值解除成功</h4>
+            <p><br></p>
+
+            <div class="btns">
+                <a class="orange-btn popup-close">確定</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+ 
+</html>
