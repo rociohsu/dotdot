@@ -3,10 +3,14 @@ $(function() {
     $('.form-column input:not(.phone,.phone-other)').keyup(function(){
         var limit_num = $(this).val().length;
         var textNote = $(this).attr('placeholder');
-        if (limit_num > 0) {
-            $(this).closest('.form-column').find('.form-title').text(textNote).fadeIn();
-        } else {
-            $(this).closest('.form-column').find('.form-title').fadeOut(0);
+        var form_title = $(this).prev('.form-title').text();
+
+        if(form_title == '' || form_title == textNote){
+            if(limit_num > 0) {
+                $(this).closest('.form-column').find('.form-title').text(textNote).fadeIn();
+            } else {
+                $(this).closest('.form-column').find('.form-title').fadeOut(0);
+            }
         }
     });
 
@@ -20,7 +24,7 @@ $(function() {
     /* reset input value */
     $(document).on('click', '.form-column .delete', function () {
         $(this).parent('.form-column').find('input').val('');
-        $(this).parent('.form-column').find('.form-title').hide();
+        //$(this).parent('.form-column').find('.form-title').hide();
     });
 
     /* open popup */
@@ -51,4 +55,10 @@ $(function() {
             dateFormat: 'yy/mm/dd'
         });
     }
+
+    /* onchecked change style */
+    $('.object-list label').click(function(){
+        $(this).removeClass('nochecked');
+        $('.object-list label').not(this).addClass('nochecked');
+    });
 });
