@@ -27,76 +27,110 @@
  
 <body>
 <div class="body-container">
-    <section class="topup topup-plan login">
+    <section class="topup">
         <div class="top-bar bg-orange">
-            <h1>儲值金</h1>
-
-            <div class="nav">
-                <a href="../notice.html">
-                    <i class="fa-solid fa-bell"></i>
-                    <b class="num">10</b>
-                </a>
-
-                <a href="#"><i class="icon-menu"></i></a>
+            <div class="nav left">
+                <a href="javascript:history.back();"><i class="fa-solid fa-angle-left"></i></a>
             </div>
+            
+            <h2>交易明細</h2>
+
+            <div class="nav"></div>
         </div>
 
         <div class="main-container">
             <div class="circle-bg"></div>
 
-            <form action="index.html">
-            <div class="object-list">
-                <div><input type="radio" name="object" id="object-01" value="5500" checked>
-                    <label for="object-01">
-                        <div class="money"><i class="fa-solid fa-dollar-sign"></i> +5500</div>
-                        <div class="desc">儲值5000送500</div>
-                        <div class="discount"><del>$5500</del> NT$5000</div>
-                    </label>
-                </div>
+            <div class="nav-tab white">
+                <a class="current" href="record.html">交易總覽</a>
+                <a href="record-list.html">交易列表</a>
+                <a href="record-topup.html">儲值紀錄</a>
             </div>
 
-            <div class="content">
-                <div class="filter-bar invoice">
-                    <select class="full">
-                        <option disabled selected>發票開立方式</option>
-                        <option>電子發票</option>
-                        <option>紙本發票</option>
-                    </select>
+            <div class="filter-bar invoice">
+                <select class="store-counter">
+                    <option>起家雞 總部</option>
+                </select>
 
-                    <select class="full">
-                        <option disabled selected>載具格式</option>
-                        <option>手機載具</option>
-                    </select>
+                <select class="store-counter">
+                    <option>起家雞 1號店</option>
+                </select>
+
+                <select class="full">
+                    <option>2022/01/01 - 2022/12/31</option>
+                </select>
+            </div>
+
+            <div class="doughnut">
+                <canvas id="myChart" width="800" height="600"></canvas>
+            </div>
+
+            <div class="record-list">
+                <div class="left">
+                    <div class="name">簡訊費</div>
                 </div>
+                <div class="right">
+                    <div class="money red-text">-50 <i class="fa-solid fa-dollar-sign"></i></div>
+                </div>
+            </div><!-- END .record-list -->
+
+            <div class="record-list">
+                <div class="left">
+                    <div class="name">GIT物流費</div>
+                </div>
+                <div class="right">
+                    <div class="money red-text">-800 <i class="fa-solid fa-dollar-sign"></i></div>
+                </div>
+            </div>
             
-                <!-- 如果統一編號輸入錯誤, class加上error -->
-                <div class="form-column error">
-                    <div class="form-title">統一編號</div>
-                    <input type="number" name="phone" placeholder="請輸入統一編號" value="12345678">
+            <div class="record-list">
+                <div class="left">
+                    <div class="name">聯合採購費用</div>
                 </div>
-                <div class="error-tips">統一編號格式錯誤</div>
-
-                <div class="form-column">
-                    <div class="form-title">電子信箱</div>
-                    <input type="text" name="phone" placeholder="請輸入發票收件信箱" value="">
-                </div>
-                <div class="error-tips">電子信箱格式錯誤</div>
-
-                <div class="checkbox"><input type="checkbox" name="remember" id="remember" value="1" checked>
-                    <label for="remember">
-                        <span class="icon"><i class="fa-solid fa-check"></i></span> 記住此發票資訊
-                    </label>
+                <div class="right">
+                    <div class="money red-text">-5000 <i class="fa-solid fa-dollar-sign"></i></div>
                 </div>
             </div>
-
-            <div class="bottom-button">
-                <button class="yellow-btn" onclick="location.href='topup.html';">上一步</button>
-                <button class="orange-btn" onclick="location.href='index.html';">下一步</button>
-            </div>
-            </form>
         </div><!-- END .main-container -->
     </section>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: [
+    '簡訊',
+    'GIT物流',
+    '聯合採購'
+    ],
+    datasets: [{
+        label: '交易總覽',
+        data: [50, 800, 5000],
+        backgroundColor: [
+        '#F1937A',
+        '#9CC3E5',
+        '#A8D08D'
+        ],
+        hoverOffset: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+        text: '圓餅圖'
+      }
+    }
+  }
+});
+</script>
 </body>
  
 </html>
