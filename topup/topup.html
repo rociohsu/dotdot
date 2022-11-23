@@ -29,21 +29,16 @@
 <div class="body-container">
     <section class="topup topup-plan">
         <div class="top-bar bg-orange">
-            <h1>儲值金</h1>
-
-            <div class="nav">
-                <a href="setting.html">
-                    <i class="fa-solid fa-bell"></i>
-                    <b class="num">10</b>
-                </a>
-
-                <a href="#"><i class="icon-menu"></i></a>
+            <div class="nav left">
+                <a href="javascript:history.back();"><i class="fa-solid fa-angle-left"></i></a>
             </div>
+                
+            <h2><div class="store-name">50嵐 總部</div>儲值</h2>
+    
+            <div class="nav"></div>
         </div>
 
         <div class="main-container">
-            <div class="circle-bg"></div>
-
             <div class="banner">
                 <img src="../images/670x376.png">
             </div>
@@ -83,10 +78,10 @@
 
             <div class="bottom-button">
                 <!-- 不可點擊時, 顯示灰色btn -->
-                <!-- <button disabled>下一步</button> -->
+                <!-- <a disabled>下一步</a> -->
 
                 <!-- 可點擊時, 顯示橘色btn -->
-                <button class="orange-btn" onclick="location.href='topup-confirm.html';">下一步</button>
+                <a class="orange-btn" href="topup-confirm.html">下一步</a>
             </div>
         </div><!-- END .main-container -->
     </section>

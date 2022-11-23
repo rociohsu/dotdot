@@ -27,7 +27,7 @@
  
 <body>
 <div class="body-container">
-    <section class="topup">
+    <section class="topup bg-none">
         <div class="top-bar bg-orange">
             <div class="nav left">
                 <a href="javascript:history.back();"><i class="fa-solid fa-angle-left"></i></a>
@@ -39,15 +39,13 @@
         </div>
 
         <div class="main-container">
-            <div class="circle-bg"></div>
-
-            <div class="nav-tab white">
+            <div class="nav-tab">
                 <a class="current" href="record.html">交易總覽</a>
                 <a href="record-list.html">交易列表</a>
                 <a href="record-topup.html">儲值紀錄</a>
             </div>
 
-            <div class="filter-bar invoice">
+            <div class="filter-bar record">
                 <select class="store-counter">
                     <option>起家雞 總部</option>
                 </select>
@@ -63,34 +61,42 @@
 
             <div class="doughnut">
                 <canvas id="myChart" width="800" height="600"></canvas>
+
+                <div class="store-all">
+                    <div class="store-name">起家雞 1號店</div>
+                    <div class="money red-text"><i class="fa-solid fa-dollar-sign"></i> -5000</div>
+                </div>
             </div>
 
-            <div class="record-list">
+            <a class="record-list" href="#">
                 <div class="left">
                     <div class="name">簡訊費</div>
                 </div>
                 <div class="right">
                     <div class="money red-text">-50 <i class="fa-solid fa-dollar-sign"></i></div>
+                    <div><i class="fa-solid fa-angle-right"></i></div>
                 </div>
-            </div><!-- END .record-list -->
+            </a><!-- END .record-list -->
 
-            <div class="record-list">
+            <a class="record-list" href="#">
                 <div class="left">
                     <div class="name">GIT物流費</div>
                 </div>
                 <div class="right">
                     <div class="money red-text">-800 <i class="fa-solid fa-dollar-sign"></i></div>
+                    <div><i class="fa-solid fa-angle-right"></i></div>
                 </div>
-            </div>
+            </a><!-- END .record-list -->
             
-            <div class="record-list">
+            <a class="record-list" href="#">
                 <div class="left">
                     <div class="name">聯合採購費用</div>
                 </div>
                 <div class="right">
                     <div class="money red-text">-5000 <i class="fa-solid fa-dollar-sign"></i></div>
+                    <div><i class="fa-solid fa-angle-right"></i></div>
                 </div>
-            </div>
+            </a><!-- END .record-list -->
         </div><!-- END .main-container -->
     </section>
 </div>

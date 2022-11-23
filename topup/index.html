@@ -32,17 +32,11 @@
             <h1>儲值金</h1>
 
             <div class="nav">
-                <a href="setting.html">
-                    <i class="fa-solid fa-sliders"></i>
-                </a>
-
                 <a href="#"><i class="icon-menu"></i></a>
             </div>
         </div>
 
         <div class="main-container">
-            <div class="circle-bg"></div>
-
             <div class="banner">
                 <img src="../images/670x376.png">
             </div>
@@ -54,6 +48,7 @@
                 <div class="money"><i class="fa-solid fa-dollar-sign"></i> 5000</div>
                 <div class="link">
                     <a href="record.html">交易明細</a>
+                    <a href="setting.html">通知設定</a>
                     <a class="popup" rel="auto-topup">自動儲值</a>
                 </div>
                 <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
@@ -62,12 +57,26 @@
             <div class="store-list">
                 <div class="status"><i class="fa-solid fa-circle"></i> 未開啟自動儲值</div>
                 <div class="name">50嵐 總部</div>
-                <div class="money"><i class="fa-solid fa-dollar-sign"></i> 2000</div>
+                <div class="money red-text"><i class="fa-solid fa-dollar-sign"></i> -84</div>
+                <div class="remind red-text">儲值金不足，請立即儲值以免服務收到影響</div>
                 <div class="link">
                     <a href="record.html">交易明細</a>
+                    <a href="setting.html">通知設定</a>
                     <a class="popup" rel="auto-topup-open">自動儲值</a>
                 </div>
                 <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+            </div><!-- END .store-list -->
+
+            <div class="store-list disabled">
+                <div class="status"><i class="fa-solid fa-circle"></i> 未開啟自動儲值</div>
+                <div class="name">麥町吐司工房 總部</div>
+                <div class="money"><i class="fa-solid fa-dollar-sign"></i> 0</div>
+                <div class="link">
+                    <a>交易明細</a>
+                    <a>通知設定</a>
+                    <a>自動儲值</a>
+                </div>
+                <a class="add-btn"><i class="fa-solid fa-circle-plus"></i></a>
             </div><!-- END .store-list -->
         </div><!-- END .main-container -->
     </section>

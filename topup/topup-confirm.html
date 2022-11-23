@@ -29,22 +29,16 @@
 <div class="body-container">
     <section class="topup topup-plan login">
         <div class="top-bar bg-orange">
-            <h1>儲值金</h1>
-
-            <div class="nav">
-                <a href="setting.html">
-                    <i class="fa-solid fa-bell"></i>
-                    <b class="num">10</b>
-                </a>
-
-                <a href="#"><i class="icon-menu"></i></a>
+            <div class="nav left">
+                <a href="javascript:history.back();"><i class="fa-solid fa-angle-left"></i></a>
             </div>
+                
+            <h2><div class="store-name">50嵐 總部</div>儲值</h2>
+    
+            <div class="nav"></div>
         </div>
 
         <div class="main-container">
-            <div class="circle-bg"></div>
-
-            <form action="index.html">
             <div class="object-list">
                 <div><input type="radio" name="object" id="object-01" value="5500" checked>
                     <label for="object-01">
@@ -56,29 +50,30 @@
             </div>
 
             <div class="content">
+                <div><b>發票開立方式</b></div>
                 <div class="filter-bar invoice">
                     <select class="full">
-                        <option disabled selected>發票開立方式</option>
-                        <option>電子發票</option>
-                        <option>紙本發票</option>
-                    </select>
-
-                    <select class="full">
-                        <option disabled selected>載具格式</option>
-                        <option>手機載具</option>
+                        <option>三聯式發票</option>
+                        <option>二聯式發票</option>
                     </select>
                 </div>
+
+                <div class="form-column">
+                    <div class="form-title">公司抬頭</div>
+                    <input type="text" name="name" value="快一點公司">
+                </div>
+                <div class="error-tips">公司抬頭格式錯誤</div>
             
                 <!-- 如果統一編號輸入錯誤, class加上error -->
                 <div class="form-column error">
                     <div class="form-title">統一編號</div>
-                    <input type="number" name="phone" placeholder="請輸入統一編號" value="12345678">
+                    <input type="number" name="id" value="12345678">
                 </div>
                 <div class="error-tips">統一編號格式錯誤</div>
 
                 <div class="form-column">
                     <div class="form-title">電子信箱</div>
-                    <input type="text" name="phone" placeholder="請輸入發票收件信箱" value="">
+                    <input type="text" name="email" value="">
                 </div>
                 <div class="error-tips">電子信箱格式錯誤</div>
 
@@ -87,13 +82,12 @@
                         <span class="icon"><i class="fa-solid fa-check"></i></span> 記住此發票資訊
                     </label>
                 </div>
-            </div>
+            </div><!-- END .content -->
 
             <div class="bottom-button">
-                <a class="yellow-btn" onclick="location.href='topup.html';">上一步</a>
-                <button class="orange-btn" onclick="location.href='index.html';">下一步</button>
+                <a class="yellow-btn" href="topup.html">上一步</a>
+                <a class="orange-btn" href="topup-pay.html">下一步</a>
             </div>
-            </form>
         </div><!-- END .main-container -->
     </section>
 </div>

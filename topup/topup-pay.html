@@ -27,64 +27,45 @@
  
 <body>
 <div class="body-container">
-    <section class="topup bg-none">
+    <section class="topup topup-plan login">
         <div class="top-bar bg-orange">
             <div class="nav left">
                 <a href="javascript:history.back();"><i class="fa-solid fa-angle-left"></i></a>
             </div>
-            
-            <h2>通知設定</h2>
-
+                
+            <h2><div class="store-name">50嵐 總部</div>儲值</h2>
+    
             <div class="nav"></div>
         </div>
 
         <div class="main-container">
-            <div class="content">
-
-                <!-- 已綁定時顯示 -->
-                <div class="store-list-set">
-                    <div class="line-push bind">
-                        <i class="icon-line"></i>
-                        <span>已綁定Line推播</span>
-                        <a href="#">解除綁定</a>
-                    </div>
-
-                    <div class="group">
-                        <div><b>餘額不足通知</b></div>
-                        <div class="gray-text">當儲值金低於以下金額時，系統將每天自動Line推播給店家</div>
-
-                        <div class="money">$<input type="number" placeholder="1000" value=""></div>
-                    </div>
-
-                    <div class="group">
-                        <div><b>新增其他聯絡信箱</b></div>
-
-                        <div class="form-column">
-                            <input type="text" name="phone" placeholder="請輸入信箱" value="username@mail.com">
-                            <a class="remove" href="#"><i class="fa-solid fa-trash"></i></a>
+            <div class="payway-list">
+                <div><input type="radio" name="payway" id="payway-01" value="線上付款">
+                    <label for="payway-01">
+                        <div class="name"><i class="icon-circle"></i> 線上付款</div>
+                        <div class="payway-online">
+                            <div><i class="icon-applepay"></i></div>
+                            <div><i class="icon-googlepay"></i></div>
+                            <div><i class="icon-creditcard"></i> 信用卡</div>
                         </div>
+                    </label>
+                </div>
 
-                        <div class="form-column">
-                            <input type="text" name="phone" placeholder="請輸入信箱" value="">
-                            <a class="add" href="#"><i class="fa-solid fa-circle-plus"></i></a>
-                        </div>
-                    </div>
-                </div><!-- END .store-list-set -->
+                <div><input type="radio" name="payway" id="payway-02" value="線上付款">
+                    <label for="payway-02">
+                        <div class="name"><i class="icon-circle"></i> 銀行匯款</div>
+                        <div class="note">需自行前往匯款</div>
+                    </label>
+                </div>
+            </div>
 
-                <!-- 未綁定時顯示 -->
-                <div class="store-list-set">
-                    <a class="line-push unbind" href="#">
-                        <i class="icon-line"></i>
-                        <span>前往綁定Line推播</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div><!-- END .store-list-set -->
-
-            </div><!-- END .content -->
+            <div class="bottom-button">
+                <a class="yellow-btn" href="topup-confirm.html">上一步</a>
+                <a class="orange-btn" href="index.html">下一步</a>
+            </div>
         </div><!-- END .main-container -->
     </section>
 </div>
-
 </body>
  
 </html>
