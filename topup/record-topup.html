@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../css/standard.css">
 
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 <script src="https://kit.fontawesome.com/488bab161f.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../js/layout.js"></script>
 </head>
@@ -54,9 +55,12 @@
                     <option>起家雞 1號店</option>
                 </select>
 
-                <select class="full">
-                    <option>2022/01/01 - 2022/12/31</option>
-                </select>
+                <a class="popup time-select full" rel="time-select">
+                    <!-- 近一天
+                    近一週
+                    近一個月 -->
+                    2022/01/01-2022/01/14
+                </a>
             </div>
 
             <a class="record-list" href="#">
@@ -122,6 +126,61 @@
     </section>
 </div>
 
+<!-- 選擇時間區間 -->
+<div class="popup-theme" id="time-select">
+    <div class="popup-container">
+        <div class="overlay-bg"></div>
+
+        <div class="popup-content">
+            <a class="popup-close-x"><i class="icon-close fa-solid fa-xmark"></i></a>
+
+            <h3>時間區間</h3>
+            <div class="time-nav">
+                <a rel="today">近一天</a>
+                <a rel="this-week">近一週</a>
+                <a rel="this-month">近一個月</a>
+                <!-- 預設選項class要加current -->
+                <a rel="custom" class="current">自訂時間</a>
+            </div>
+
+            <div class="time-pane" id="today">
+                <div class="flex-inner">
+                    <div>2022/01/01</div>
+                </div>
+            </div>
+                
+            <div class="time-pane" id="this-week">
+                <div class="flex-inner">
+                    <div>2022/01/01</div>
+                    <span>-</span>
+                    <div>2022/01/07</div>
+                </div>
+            </div>
+                
+            <div class="time-pane" id="this-month">
+                <div class="flex-inner">
+                    <div>2022/01/01</div>
+                    <span>-</span>
+                    <div>2022/01/31</div>
+                </div>
+            </div>
+
+            <!-- 預設選項開啟class要加current -->
+            <div class="time-pane current" id="custom">
+                <div class="flex-inner">
+                    <div><input type="text" class="datepicker" id="date-from" value="2022/01/01"></div>
+                    <span>-</span>
+                    <div><input type="text" class="datepicker" id="date-to" value="2022/01/14"></div>
+                </div>
+            </div>
+
+            <div class="btns">
+                <a class="popup-close">取消</a>
+                <button class="orange-btn popup-close" type="button">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
  
 </html>
