@@ -3,6 +3,7 @@
 @import "global";
 @import url("fontawesome.min.css");
 @import url("jquery-ui.css");
+@import "index";
 
 /* font family */
 .font-family (@font-size: 14px) {
@@ -21,7 +22,7 @@
 }
 
 /* padding box */
-.padding-box() {
+.padding-box() { 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box; 
     box-sizing: border-box;
@@ -31,7 +32,7 @@
 @img-path: "../images/";
 
 /* default */
-body { .font-family(14px); background: var(--color-bggray); }
+body { .font-family(14px); background: var(--color-bggray); overflow-x: hidden !important; }
 .body-container { position: relative; width: 100%; max-width: 820px; min-height: 100vh; margin: 0 auto; overflow: hidden; background: var(--color-white); box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.05); }
 .body-container.bg-gray { background: var(--color-bggray); }
 a, button, select { cursor: pointer; }
@@ -71,13 +72,11 @@ i.icon-easywallet { background-image: url('@{img-path}easywallet.svg'); }
 i.icon-jkopay { background-image: url('@{img-path}jkopay.svg'); background-size: 80%; }
 i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 
-.money { display: inline-flex; flex-flow: nowrap; align-items: center; justify-content: center;
+.money { display: inline-flex; flex-flow: nowrap; align-items: center; justify-content: center; vertical-align: middle;
     color: var(--color-darker); font-weight: bold;
 
-    .fa-dollar-sign { display: inline-flex; flex-flow: nowrap; align-items: center; justify-content: center;
-    width: 20px; height: 20px; padding: 2px; margin-right: 3px;
-    color: var(--color-white); font-size: 12px; text-align: center; line-height: 12px;
-    background: var(--color-green); .rounded-corners(99em); overflow: hidden; }
+    .icon-dollar { width: 20px; height: 20px; padding: 2px; margin-right: 3px;
+    background: url('@{img-path}icon/topup.svg') no-repeat center; background-size: contain; }
 }
 
 .checkbox, .radio { width: 100%; max-width: 360px; margin: 0 auto 10px auto;
@@ -103,7 +102,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 .yellow-btn { color: var(--color-orange) !important; background: var(--color-yellow) !important; }
 
 /* 歡迎頁 */
-.welcome { position: relative; height: 100vh; background: url('@{img-path}welcome-bg.png') repeat center; background-size: 100%; 
+.welcome-page { position: relative; height: 100vh; background: url('@{img-path}welcome-bg.png') repeat center; background-size: 100%; 
     
     .circle-bg { position: absolute; width: 200%; height: 200%; left: -65%; top: 50%; background: linear-gradient(143.09deg, rgba(246, 187, 66, 0.5) 5.34%, var(--color-bgorange) 50%), var(--color-white); .rounded-corners(99em); z-index: 0; }
 
@@ -122,11 +121,11 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 }
 
 /* 登入頁 */
-.login { position: relative; min-height: 100vh; background: var(--color-white); 
+.login-page { position: relative; min-height: 100vh; background: var(--color-white);
     .circle-bg { position: absolute; width: 200%; height: 200%; left: -50%; bottom: 78%; background: url('@{img-path}welcome-bg.png') repeat center; background-size: 50%; .rounded-corners(99em); z-index: 0; }
 
     .content { position: relative; z-index: 1; 
-        display: flex; flex-flow: wrap; align-content: space-between;
+        display: flex; flex-flow: wrap; align-content: space-between; 
 
         .top { width: 100%; height: 10vh; padding: 0 10%;
             display: inline-flex; flex-flow: nowrap; justify-content: space-between; align-items: center; 
@@ -191,13 +190,13 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 }
 
 @media (min-width: 820px) {
-    .login {
+    .login-page {
         .circle-bg { bottom: 75%; }
         .content .bottom { padding-top: 15%; }
     }
 }
 
-.popup-theme {
+.popup-theme { display: none;
     .popup-container { 
         display: flex; justify-content: center; align-items: center;
         position: fixed; width: 100%; max-width: 600px; height: 90vh; left: 0; top: 0; right: 0; bottom: 0; padding: 15px; margin: 0 auto; z-index: 6;
@@ -246,8 +245,8 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 
             .btns { display: flex; flex-flow: nowrap; align-items: center; justify-content: center; margin-top: 20px;
                 > a, > button, > input[type="submit"], > input[type="reset"] {
-                    display: block; width: calc(100% - 20px); margin: 0 5px; padding: 10px 15px;
-                    color: var(--color-darker); font-size: 18px; text-align: center; white-space: nowrap;
+                    display: block; width: calc(100% - 20px); height: 45px; margin: 0 5px; padding: 0 15px;
+                    color: var(--color-darker); font-size: 18px; text-align: center; line-height: 45px; white-space: nowrap;
                     .rounded-corners (30px); background: var(--color-bggray); 
                 }
                 .full-btn { width: 100%; margin: 0; }
@@ -285,10 +284,10 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
     z-index: 2;
 
     > * { width: 100%; }
-    > h1 { display: inline-flex; align-items: center; font-size: 24px; 
+    > h1 { display: inline-flex; align-items: center; color: var(--color-white); font-size: 24px; 
         i { margin-right: 5px; }
     }
-    > h2 { font-size: 18px; font-weight: normal; text-align: center; line-height: 18px; 
+    > h2 { color: var(--color-white); font-size: 18px; font-weight: normal; text-align: center; line-height: 18px; 
         .store-name { font-size: 14px; }
     }
     .nav { display: inline-flex; justify-content: flex-end; align-items: center;
@@ -309,15 +308,18 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         }
     }
     .nav.left { justify-content: flex-start; }
+
+    .circle-bg-fixed { position: absolute; width: 1000px; height: 1000px; left: 50%; bottom: -15px; margin: 0 0 0 -500px; border-radius: 99em; background: var(--color-orange); pointer-events: none; z-index: -1; }
 }
 .top-bar.bg-gray { background: var(--color-bggray); }
-.top-bar.bg-orange { color: var(--color-white); background: var(--color-orange); 
+.top-bar.bg-orange, .top-bar.circle { color: var(--color-white); background: var(--color-orange); 
     .nav {
         a { color: var(--color-white); }
         i { color: var(--color-white); }
         i.icon-menu { background: url('@{img-path}menu-w.svg') no-repeat center; }
     }
 }
+.top-bar.circle { max-width: 450px; background: none; }
 
 .main-container { margin-top: 60px; padding: 10px 20px 40px 20px; }
 
@@ -364,9 +366,9 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
     }
     .logo { max-width: 200px; margin: 0 auto; filter: drop-shadow(0px 3px 3px rgb(0 0 0 / 0.2)); }
     .info { line-height: 180%;
-        h3 { margin-bottom: 12px; font-size: 18px; font-weight: normal; }
-        h1 { font-size: 24px; font-weight: normal; }
-        h2 { font-size: 24px; font-weight: normal; 
+        h3 { margin-bottom: 12px; color: var(--color-white); font-size: 18px; font-weight: normal; }
+        h1 { color: var(--color-white); font-size: 24px; font-weight: normal; }
+        h2 { color: var(--color-white); font-size: 24px; font-weight: normal; 
             position: relative; padding-top: 20px; margin-top: 20px; }
         h2::before { position: absolute; display: block; content: ''; width: 20px; left: 0; right: 0; top: 0; margin: 0 auto; border-top: 2px solid var(--color-white); }
     }
@@ -483,7 +485,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 .time-nav { display: flex; flex-flow: nowrap; align-items: center; justify-content: space-between;
     padding: 5px; background: var(--color-bggray); .rounded-corners(30px);
 
-    > a { width: 25%; padding: 5px; color: var(--color-dark) !important; text-align: center; }
+    > a { width: 25%; padding: 5px; color: var(--color-dark) !important; font-size: 14px; text-align: center; white-space: nowrap; }
     .current { color: var(--color-white) !important; background: var(--color-green); .rounded-corners(30px); }
 }
 .time-pane { display: none; margin: 15px auto 30px auto; padding: 15px 10%;
@@ -572,11 +574,17 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 }
 
 /* 儲值頁 */
-.topup { background: url('@{img-path}circle-bg.png') top center no-repeat; background-size: contain;
-    .circle-bg { display: none; position: absolute; width: 200%; height: 200%; left: -50%; bottom: 80%; background: #FF9900; .rounded-corners(99em); z-index: 0; }
+.topup { /*background: url('@{img-path}circle-bg.png') top center no-repeat; background-size: contain;*/
+    .circle-bg { position: absolute; width: 200%; height: 200%; left: -50%; bottom: 80%; background: #FF9900; .rounded-corners(99em); z-index: 0; }
 
     .banner { position: relative; width: 100%; max-width: 600px; margin: 0 auto; z-index: 1;
         > img { width: 100%; height: auto; .rounded-corners(20px); }
+    }
+
+    .account-none { margin: 50px auto; text-align: center;
+        > h2 { font-size: 21.5px; font-weight: normal; color: var(--color-regular); }
+        > p { color: var(--color-dark); font-size: 14px; }
+        a { font-size: 14px; }
     }
 
     .form-title { font-weight: bold; color: var(--color-darker) !important; }
@@ -594,9 +602,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         .name { margin: 15px auto; font-size: 18px; }
         .remind { margin-bottom: 10px; }
         .money { display: flex; flex-flow: nowrap; justify-content: center; align-items: center; margin-bottom: 15px; font-size: 36px; font-weight: normal;
-            .fa-dollar-sign { display: inline-block; width: 30px; height: 30px; padding: 5px 6px 7px 6px; margin-right: 5px;
-                color: var(--color-white); font-size: 18px; text-align: center; line-height: 18px;
-                background: var(--color-green); .rounded-corners(99em); border: 2px solid var(--color-white); box-shadow: 1px 1px 0px var(--color-orange); overflow: hidden; }
+            .icon-dollar { width: 30px; height: 30px; }
         }
     
         .link {
@@ -607,8 +613,6 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         .add-btn { position: absolute; right: 10px; bottom: 10px; color: var(--color-orange); font-size: 30px; line-height: 100%; background: var(--color-white); .rounded-corners(99em); box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); }
     }
     .store-list.disabled { opacity: 0.5;
-        .money .fa-dollar-sign { background: var(--color-light); box-shadow: 1px 1px 0px var(--color-light); }
-    
         .link > a { color: var(--color-dark); cursor: text; }
     
         .add-btn { color: var(--color-light); cursor: text; }
@@ -624,10 +628,10 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         }
         .name, .status { font-size: 18px; }
         .note { font-size: 12px; }
-        .store { color: var(--color-darker); font-size: 12px; }
+        .store-name { color: var(--color-darker); font-size: 12px; }
         time { color: var(--color-dark); font-size: 12px; }
         .money { font-size: 20px; 
-            > .fa-dollar-sign { width: 24px; height: 24px; margin-left: 5px; margin-right: 0; font-size: 14px; border: 2px solid var(--color-white); box-shadow: 1px 1px 0px var(--color-orange); }
+            > .icon-dollar { width: 24px; height: 24px; }
         }
     }
     .record-list:last-child { border-bottom: none; }
@@ -636,17 +640,16 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         > div { margin-top: 15px;
            input[type=radio], input[type=checkbox] { display: none; }
            label { display: block; padding: 18px 15px;
-            background: var(--color-yellow); border-radius: 20px 40px;
+            background: var(--color-yellow); border-radius: 20px 40px; border: 2px solid var(--color-yellow);
                 .money { font-size: 24px; 
-                    .fa-dollar-sign { width: 30px; height: 30px; padding: 5px 6px 7px 6px; margin-right: 5px;
-                        font-size: 16px; border: 2px solid var(--color-white); box-shadow: 1px 1px 0px var(--color-orange); }
+                    .icon-dollar { width: 30px; height: 30px; }
                 }
                 .desc { margin-bottom: 5px; color: var(--color-dark); font-size: 12px; text-align: right; }
                 .discount { font-size: 18px; text-align: right; 
                     > del { margin-right: 5px; color: var(--color-red); font-size: 14px; }
                 }
            }
-           label.nochecked { background: var(--color-bggray); }
+           label.nochecked { background: var(--color-bggray); border: 2px solid var(--color-bggray); }
     
            input[type=radio]:checked + label, input[type=checkbox]:checked + label { border: 2px solid var(--color-orange); }
        }
@@ -656,8 +659,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         .store-all { position: absolute; width: 200px; height: 50px; top: 0; left: 0; bottom: 0; right: 0; margin: auto; padding-top: 10px; text-align: center;
             .store-name { margin-bottom: 5px; }
             .money { font-size: 24px; 
-                .fa-dollar-sign { width: 30px; height: 30px; padding: 5px 6px 7px 6px; margin-right: 5px;
-                    font-size: 16px; border: 2px solid var(--color-white); box-shadow: 1px 1px 0px var(--color-orange); }
+                .icon-dollar { width: 30px; height: 30px; }
             }
         }
     }
@@ -691,7 +693,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         > div { margin-top: 15px;
            input[type=radio], input[type=checkbox] { display: none; }
            label { display: block; padding: 18px 15px;
-            background: var(--color-bggray); border-radius: 20px 40px;
+            background: var(--color-bggray); border-radius: 20px 40px; border: 2px solid var(--color-bggray);
                 .name { font-size: 24px; 
                     > i.icon-circle { display: inline-block; width: 22px; height: 22px; margin-bottom: -2px; border: 2px solid var(--color-light); .rounded-corners(99em); }
                 }
@@ -704,7 +706,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
                 }
             }
     
-            input[type=radio]:checked + label, input[type=checkbox]:checked + label { background-color: var(--color-yellow);border: 2px solid var(--color-orange); 
+            input[type=radio]:checked + label, input[type=checkbox]:checked + label { background-color: var(--color-yellow); border: 2px solid var(--color-orange); 
                 .name > i.icon-circle { 
                     border-width: 9px; border-color: var(--color-orange); }
             }
@@ -713,20 +715,14 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 }
 .topup.bg-none { background: none; }
 .topup.topup-plan { padding-bottom: 90px; }
-.topup.topup-plan.login { min-height: auto; 
+.topup.topup-plan.login-page { min-height: auto; 
     .content { width: 100%; max-width: 360px; margin: 0 auto; padding-top: 20px; }
 }
 
-@media (min-width: 820px) {
-    .topup {
-        .circle-bg.tall { display: none; }
-    }
-}
-
-.nav-tab { position: relative; display: flex; flex-flow: nowrap; justify-content: space-around; align-items: flex-end;
+.nav-tab { position: relative; display: flex; flex-flow: nowrap; justify-content: space-around; align-items: center;
     width: 100%; margin: 10px auto; border-bottom: 1px solid var(--color-light); z-index: 1;
 
-    > a { width: 100%; padding: 5px 5px 6px 5px; margin-bottom: -1px; color: var(--color-dark); text-align: center;
+    > a { display: inline-flex; align-items: center; height: 44px; padding: 5px 5px 6px 5px; margin-bottom: -1px; color: var(--color-dark); font-size: 14px; text-align: center; line-height: 120%;
         .fa-circle-question { color: var(--color-blue); font-size: 16px; }
     }
     > a.topup-info { width: auto; }

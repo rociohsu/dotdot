@@ -1,0 +1,935 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Roboto:wght@400;700&display=swap');
+// @color: #EE6C5F; //Qcard
+@color: #FF9900; //快一點
+// @color: #EF6079; //桃園
+// @color: #DD9A8A; //米哥烘焙坊
+// @color: #740008; //鬍鬚張
+
+:root {
+    // Font
+    // --fXXL: clamp(1.9rem, 10vw, 2.0rem);
+    // --fXL:  clamp(1.4rem, 6vw, 1.5rem);
+    // --fL:   clamp(1.2rem, 5vw, 1.3rem);
+    // --fM:   clamp(1rem, 4vw, 1.2rem);
+    // --fS:   clamp(0.8rem, 3vw, 0.9rem);
+    // --fXS:  clamp(0.6rem, 3vw, 0.7rem);
+    --fXXL: 1.9rem;
+    --fXL:  1.4rem;
+    --fL:   1.2rem;
+    --fM:   1rem;
+    --fS:   0.8rem;
+    --fXS:  0.6rem;
+
+    // Color
+    --k1:     @color;
+    --k2:     linear-gradient(0deg, fade(@color, 25%), fade(@color, 25%)), white;
+    --c1:     #EF6079;
+    --c2:     #F3CBC7;
+    --c3:     #5CB8B2;
+    --c4:     #333F48;
+    --cG1:    #333333;
+    --cG2:    #4F4F4F;
+    --cG3:    #828282;
+    --cG4:    #BDBDBD;
+    --cG5:    #E0E0E0;
+    --cG6:    #F2F2F2;
+    --cBg:    #F2F1F6;
+    --cRed:   #EB5757;
+    --cGreen: #27AE60;
+    --cOrange:#FF9900;
+    --cBlue:  #5CB8B2;
+}
+// Reset
+*                                       { margin: 0; padding: 0;
+    &:visited                           { color: inherit; }}
+html, body                              { overscroll-behavior-x: none; }
+span, p, h1, h2, h3, h4, h5, h6, a,
+select, input, textarea, button, ol, ul { font-size: var(--fM); font-family: 'Noto Sans TC', 'Roboto', 'Arial', '微軟正黑體'; }
+span, p, h1, h2, h3, h4, h5, h6, ol, ul { color: var(--cG1); }
+a                                       { color: inherit; text-decoration: none !important; }
+a:hover                                 { cursor: pointer; box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2); }
+button                                  { border: none; }
+button:hover                            { cursor: pointer; box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2); }
+input                                   { border: 0; padding: 0; color: var(--cG1); background-color: transparent; }
+input:focus                             { box-shadow: none !important; outline: none; }
+input:-webkit-autofill                  { color: var(--k1) !important; background-color: transparent !important; box-shadow: 0 0 0px 1000px white inset !important; background-clip: content-box !important; }
+textarea                                { border: 0; }
+textarea:focus                          { box-shadow: none !important; outline: none; }
+select                                  { -webkit-appearance: none; -moz-appearance: none; appearance: none; outline: none; border: 0; }
+select:hover                            { cursor: pointer; }
+img                                     { object-fit: cover; }
+i                                       { text-decoration: none !important; }
+iframe                                  { border: 0; }
+*, :after, :before                      { box-sizing: border-box !important; -webkit-box-sizing: border-box; }
+
+// Components
+.disabled   { color: var(--cG4) !important; filter: grayscale(100%); opacity: 0.5; pointer-events: none;
+    *       { color: var(--cG4) !important; }
+    img     { filter: grayscale(100%); opacity: 0.5; }}
+.loading { top: 0; left: 0; width: 100vw; height: 100vh; position: fixed; display: flex; align-items: center; justify-content: center; z-index: 9; background-color: rgba(0,0,0,0.9);
+    > div { min-width: 120px; min-height: 120px; border-radius: 20px; display: flex; align-items: center; justify-content: center;
+        > div { min-width: 100px; min-height: 100px; border: 3px solid var(--k1); border-top: 3px solid transparent; border-radius: 50%; -webkit-animation: spin 1s linear infinite; animation: spin 1s linear infinite; }
+        img { width: 80px; border-radius: 99px; position: absolute; }}}
+.spinner { top: 0; left: 0; width: 100vw; height: 100vh; /* height: var(--app-height); */ position: fixed; display: flex; align-items: center; justify-content: center; z-index: 9; background-color: rgba(255,255,255,0.75); backdrop-filter: blur(4px);
+    > div { min-width: 80px; min-height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); 
+        > div { min-width: 40px; min-height: 40px; border: 3px solid var(--k1); border-top: 3px solid transparent; border-radius: 50%; -webkit-animation: spin 1s linear infinite; animation: spin 1s linear infinite; }}}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+.popBody div.icon, .result div.icon { width: 100%; margin: -60px 0 5px; display: flex; justify-content: center;
+    > i, > svg { border-radius: 999px; background-color: white; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);}
+    > div { width: 80px; height: 80px; padding: 20px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background-color: white; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);
+        &.orange { border: 7.5px solid var(--cOrange); }
+        &.blue { border: 7.5px solid var(--cBlue); }}
+    .fa-circle-check { font-size: 5.7em !important; border-radius: 99px; background-color: white; color: var(--cGreen); }
+    .fa-circle-xmark { font-size: 5.7em !important; border-radius: 99px; background-color: white; color: var(--cRed); }
+    .fa-hourglass-half, .fa-exclamation { color: var(--cOrange); }}
+button { width: 100%; height: 40px; border-radius: 99px; display: flex; align-items: center; justify-content: center; gap: 5px; background-color: var(--k1);
+    span { color: white !important; }}
+.switch { position: relative; display: inline-block; min-width: 40px; max-width: 40px; height: 24px; margin: 5px;
+    input { opacity: 0; width: 0; height: 0;
+        &:checked + .slider { background-color: var(--k1); }
+        &:focus + .slider { box-shadow: 0 0 1px var(--k1); }
+        &:checked + .slider:before { -webkit-transform: translateX(16px); -ms-transform: translateX(16px); transform: translateX(16px); }}
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; border-radius: 34px; background-color: var(--cG4); -webkit-transition: .4s; transition: .4s;
+        &:before { position: absolute; content: ""; height: 20px; width: 20px; left: 2px; bottom: 2px; border-radius: 50%; background-color: white; -webkit-transition: .4s; transition: .4s; }}}
+div.pages { width: 100%; height: 30px; display: flex; align-items: flex-start; border-bottom: 1px solid var(--cG5);
+    a.page { width: 100%; height: 30px; display: flex; align-items: center; justify-content: center;
+        &.active { color: var(--k1); border-bottom: 2px solid var(--k1);
+            span { color: var(--k1); }}
+        span { color: var(--cG4); }}}
+.check { width: fit-content; min-height: 20px; padding: 5px 0 5px 20px; border-radius: 10px; position: relative; display: flex; align-items: center; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; font-size: 12px;
+    // &:hover { background: var(--cBg); } 
+    &:hover input ~ .checkmark { border: 2px solid var(--cG5); background-color: var(--cG5); }
+    span:last-child { margin-left: 2px; }
+    input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; /* Hide the browser's default radio button */
+        &:checked ~ .checkmark { background-color: var(--k1); border: 2px solid var(--k1); } /* When the radio button is checked, add a blue background */
+        &:checked ~ .checkmark:after { display: block; } /* Show the indicator (dot/circle) when checked */}
+    .checkmark.checkbox { position: absolute; top: auto; bottom: auto; left: 0; height: 16px; width: 16px; border-radius: 2px; background-color: var(--cG5);
+        &:after { content: ""; position: absolute; display: none; } /* Create the checkmark/indicator (hidden when not checked) */
+        &:after { left: 3px; top: -1px; width: 6px; height: 12px; border: solid white; border-width: 0 3px 3px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); } /* Style the checkmark/indicator */}}
+div.filter { width: 100%; height: 20px; margin-top: -10px; display: flex; align-items: center;
+    > * { width: 100%; height: 20px; padding: 0 10px; gap: 5px; display: flex; align-items: center; }
+    > *:not(:first-child) { border-left: 1px solid var(--cG5); }
+    span, input { font-size: var(--fS); white-space: nowrap; }
+    i, svg { color: var(--k1); }
+    a.dropdown { justify-content: space-between; }
+    div.search { justify-content: center;
+        input { width: 100%;
+            &::placeholder { color: var(--cG4); }}}}
+a.dateRange { width: 100%; height: 40px; padding: 0 15px; border: 1px solid var(--cG5); border-radius: 10px; display: flex; align-items: center; justify-content: space-between;
+    span { color: var(--cG3); }
+    i, svg { color: var(--k1); }}
+.pop { width: 100%; height: 100%; padding: 10px; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.5); display: none; align-items: flex-end; justify-content: center; z-index: 8;
+    .popBody { width: 100%; max-width: 430px; max-height: 100%; padding: 20px; border-radius: 20px; position: relative; display: flex; flex-direction: column; gap: 20px; background-color: white; overflow-y: auto; animation-name: popup; animation-duration: 0.5s; animation-iteration-count: 1;
+        a.close { width: 30px; height: 30px; min-height: 30px; margin: -20px 0 -20px auto; border-radius: 99px; top: 2px; position: sticky; display: flex; align-items: center; justify-content: center; color: var(--cG4); background-color: rgba(255, 255, 255, 0.75); }}}
+@keyframes popup { 0% { margin-bottom: -100vh; } 100% { margin-bottom: 0; }}
+@keyframes popdown { 0% { margin-bottom: 0; } 100% { margin-bottom: -100vh; }}
+
+// Common
+.payment, .result, .price, .login, .coin, .tickets, .ticket, .news, .new, .profile, .profileEdit, .carrier, .policy {
+    section.head { width: 100%; max-width: 430px; height: 70px; padding: 20px 20px 30px; left: 50%; transform: translate(-50%, 0); position: fixed; display: flex; align-items: center; justify-content: center; gap: 5px; z-index: 5;
+        .bg { width: 1000px; height: 1000px; border-radius: 999px; position: absolute; bottom: -15px; background: var(--k2); pointer-events: none; z-index: -1; }
+        .left, .right { width: 100%; display: flex; align-items: center; }
+        .right { justify-content: right; }}}
+a.coupon { height: 140px; padding: 0 30px; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; background-color: white; overflow: hidden; z-index: 3;
+    &.stamp { height: 180px;
+        div.count { margin-bottom: 5px; gap: 10px; display: flex; align-items: center;
+            img { width: 40px; height: 40px; border-radius: 10px; }
+            div.bar { width: 100%; border-radius: 99px; background-color: var(--cG5); overflow: hidden;
+                div { width: 50%; height: 8px; border-radius: 99px; background-color: var(--k1); }}
+            span { font-weight: bold; color: var(--k1); }}}
+    div.dot { width: 40px; height: 40px; border-radius: 99px; z-index: 2; position: absolute; background-color: var(--cBg);
+        &.left { left: -20px; }
+        &.right { right: -20px; }}
+    div.label { width: 150px; height: 24px; z-index: 1; transform: rotate(30deg); position: absolute; top: 5px; right: -45px; display: flex; align-items: center; justify-content: center; background-color: var(--cG4);
+        span { font-size: var(--fS); color: white; }}
+    div.content { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 2px;
+        div.sticker { display: flex; gap: 5px; align-items: center;
+            img { height: 40px; aspect-ratio: 1/1; border-radius: 5px; }
+            span { font-weight: bold; color: var(--k1); }}}
+    > img { width: 100px; height: 100px; border-radius: 10px; }
+    span {
+        &.title { font-size: var(--fM); color: var(--k1); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+        &.name { font-size: var(--fS); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+        &.info { font-size: var(--fS); color: var(--cG3); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+        &.date { font-size: var(--fS); }
+        &.none { font-size: var(--fM); color: var(--k1); text-align: center; }}}
+section.pop.notice { align-items: center;
+    .popBody { display: flex; flex-direction: column; align-items: center; overflow-y: visible;
+        span { text-align: center;
+            &.title { font-size: var(--fL); }
+            &:not(.title) { color: var(--cG3); }}
+        ol { padding-left: 20px; }
+        div.icon { display: flex; justify-content: center; margin-top: -60px; }
+        > div.buttons { width: 100%; display: flex; gap: 10px;
+            button { background-color: var(--cBg);
+                &:last-child { background-color: var(--k1);
+                    span { color: white !important; }}
+                span { color: var(--cG2) !important; }}}
+        > div:not(.buttons) { display: flex; flex-direction: column; align-items: center; }}}
+section.pop.banner { padding: 20px; align-items: flex-start; background-color: transparent;
+    .popBody { padding: 10px 15px; border: 2px solid var(--k1); gap: 5px; background-color: rgba(255, 255, 255, 0.95); animation-name: bannerDown; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);
+        span.title { font-size: var(--fL); color: var(--k1); }
+        span.time { color: var(--cG3); }}}
+@keyframes bannerDown { 0% { margin-top: -100vh; } 100% { margin-top: 0; }}
+@keyframes bannerUp { 0% { margin-top: 0; } 100% { margin-top: -100vh; }}
+section.pop.notification .popBody { 
+    a.close { margin-bottom: -28px; }
+    span.title { font-size: var(--fL); font-weight: bold; }
+    a.read { display: flex; justify-content: center;
+        span { color: var(--k1); }}
+    a.item { display: flex; align-items: center; gap: 10px;
+        &:not(:last-child) { padding-bottom: 20px; border-bottom: 1px solid var(--cG5); }
+        div.dot { min-width: 8px; min-height: 8px; border-radius: 99px;
+            &.active { background-color: var(--cRed); }}
+        div.left { display: flex; flex-direction: column;
+            span { font-size: var(--fL);
+                &:not(:first-child) { font-size: var(--fM); }
+                &:not(:first-child):not(:nth-child(2)) { color: var(--cG3); }}}
+        div.right { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end;
+            > div { display: flex; align-items: center; gap: 5px;
+                span { font-size: var(--fL); font-weight: bold; }
+                img { width: 24px; }}
+            > span { font-size: var(--fS); color: var(--cG3); }}}}
+section.pop.dateRange {
+    span.title { font-size: var(--fL); } 
+    div.tabs { width: 100%; display: flex; align-items: center; 
+        a { width: 100%; height: 40px; border-radius: 99px; display: flex; align-items: center; justify-content: center;
+            &.active { background: var(--k2);
+                span { color: var(--k1); }}}}
+    div.dateRange { width: 100%; height: 30px; padding: 0 20px; border-bottom: 1px solid var(--cG5); position: relative; display: flex; align-items: center; justify-content: space-around;
+        input { text-align: center; }}
+    div.buttons { width: 100%; display: flex; gap: 10px;
+        button:first-child { background-color: var(--cBg);
+            span { color: var(--cG2) !important; }}}}
+section.barcode { align-items: center;
+    &.v2 .popBody { border-radius: 40px 40px 20px 20px; gap: 30px; }
+    .popBody {
+        div.header { height: 60px; min-height: 60px; padding-right: 20px; border-radius: 99px; gap: 15px; display: flex; align-items: center; background: var(--k2);
+            > div:not(.content) { height: 60px;
+                img { height: 90px; aspect-ratio: 1/1; margin: -5px; border: 5px solid white; border-radius: 30px; }}
+            div.content { width: 100%; margin-left: 20px; display: flex; flex-direction: column; }
+            span { width: 100%;
+                &.title { font-size: var(--fXL); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+                &.remark { width: fit-content; font-size: var(--fS); text-align: start !important; color: var(--cG3) !important; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+                &:not(.title) { text-align: end; color: var(--k1); }}
+            a { text-decoration: underline !important; white-space: nowrap; color: var(--k1); }}
+        div.code { width: 100%; height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+            div { display: flex; align-items: center; gap: 5px;
+                img { height: 40px; aspect-ratio: 1/1; border-radius: 99px; }
+                span { font-size: var(--fXL); }}
+            div.barcode, img.barcode { width: 100%; justify-content: center;  }
+            div.qrcode, img.qrcode { height: 200px; justify-content: center; }}
+        div.action { min-height: 25px; display: flex; align-items: center; justify-content: space-between;
+            div.left { display: flex; align-items: center; gap: 15px;
+                a {
+                    &.active { i, svg { color: var(--k1); }}
+                    &:last-child { padding-left: 15px; border-left: 1px solid var(--cG5); }
+                    i, svg { color: var(--cG4); }}}
+            div.right { display: flex; align-items: center; gap: 10px;
+                span { font-size: var(--fS); color: var(--cG3); }
+                i, svg { color: var(--k1); }}}}}
+section.pop.category {
+    .popBody { gap: 10px;
+        @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 10px; }}}
+    span {
+        &.title { margin-bottom: 5px; font-size: var(--fL); font-weight: bold; color: var(--k1); }
+        &.active { color: var(--k1); }}
+    a:not(.close):not(:last-child) { padding-bottom: 10px; border-bottom: 1px solid var(--cG5); }}
+section.pop.invite .popBody { background: var(--k2);
+    > div:not(.action) {
+        span:not(.title) { color: var(--k1); }
+        div.icon div.border { border: 7.5px solid var(--k1);
+            i, svg { color: var(--k1); }}}
+    div.action { width: 100%; display: flex; flex-direction: column; gap: 10px;
+        button { padding: 0 15px; display: flex; align-items: center; gap: 5px; background-color: white;
+            span { width: 100%; color: var(--cG1) !important; text-align: start; white-space: nowrap;
+                &.note { width: fit-content; font-size: var(--fS); color: var(--cG3) !important; }}
+            i, svg { color: var(--k1);
+            &.fa-line { outline: 6px solid white; outline-offset: -4px; border-radius: 99px; background-color: #06C755; color: white;
+                &::before { border-radius: 99px; background-color: #06C755; }}}}}}
+section.pop.intro { width: 100%; height: 100%; padding: 0; align-items: center;
+    .popBody { width: 100%; height: 100%; padding: 0; border-radius: 0; position: relative; gap: 10px; align-items: center; justify-content: space-around; overflow: hidden;
+        img { width: 100%; height: 100%; }
+        div.next { width: 90%; bottom: 25px; position: absolute; display: flex; align-items: center; justify-content: space-between; color: var(--k1);
+            div.dots { display: flex; align-items: center; gap: 5px;
+                div { min-width: 6px; min-height: 6px; border-radius: 99px; background-color: var(--cG5);
+                    &.active { background-color: var(--k1); }}}
+            a { width: 30px; height: 30px; border-radius: 99px; display: flex; align-items: center; justify-content: center;}}
+        button { width: 150px; bottom: 80px; position: absolute; z-index: 100;
+            span { font-size: var(--fL); }}}}
+section.pop.visit { height: 100%; padding: 50px 25px; align-items: center;
+    .popBody { height: 100%; gap: 10px; align-items: center; justify-content: space-between; overflow: hidden;
+        img { max-width: 100%; max-height: 90%; aspect-ratio: 9/16; border-radius: 10px; }
+        div.next { width: 100%; display: flex; align-items: center; justify-content: space-between; color: var(--k1);
+            div.dots { display: flex; align-items: center; gap: 5px;
+                div { min-width: 6px; min-height: 6px; border-radius: 99px; background-color: var(--cG5);
+                    &.active { background-color: var(--k1); }}}
+            a { width: 100%; display: flex;
+                &.right { justify-content: flex-end; }}}
+        div.buttons { width: 100%; display: flex; align-items: center; gap: 10px;
+            button { width: 100%; background-color: var(--cBg);
+                &:last-child { background-color: var(--k1);
+                    span { color: white !important; }}
+                span { color: var(--cG2) !important; }}}}}
+
+// 付款頁
+.payment { overflow: auto;
+    section.head { padding: 10px 20px 0;
+        .left {
+            a { min-width: 30px; min-height: 30px; border-radius: 99px; display: flex; align-items: center; justify-content: center; color: var(--k1); }
+            span { color: var(--k1); font-size: var(--fL); }}
+        .center { display: flex; flex-direction: column; align-items: center;
+            span.price { margin-top: -5px; font-size: var(--fXXL); color: var(--k1); }}
+        .right { justify-content: right;
+            span:last-child { font-size: var(--fXL); }}}
+    section.foot { width: 100%; max-width: 430px; padding: 20px 20px 30px; left: 50%; transform: translate(-50%, 0); border-radius: 20px 20px 0 0; position: fixed; bottom: 0; background-color: fade(white, 95%); box-shadow: 0px -10px 20px rgba(55, 84, 170, 0.1); z-index: 5;
+        button {
+            span { font-size: var(--fL); }
+            img { height: 20px; }}}
+    section.main { width: 100%; max-width: 430px; padding: 100px 20px 160px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px;
+        section.spending, section.point, section.type, section.phone { width: 100%; gap: 10px; display: flex; flex-direction: column;
+            span.title { font-weight: bold; white-space: nowrap; }
+            .input { width: 100%; height: 40px; padding: 0 10px; border-radius: 99px; display: flex; align-items: center; justify-content: right; gap: 2px; font-size: var(--fXL); border: 1px solid var(--cG5);
+                input { width: 100%; font-size: var(--fXL); color: var(--cG1) !important; opacity: 1 !important; }}}
+        // 登入
+        section.join { width: 100%; height: 50px; padding: 0 15px; border: 1px solid var(--k1); border-radius: 99px; display: flex; align-items: center; justify-content: space-between; position: relative; background-color: var(--cBg); overflow: hidden;
+            > * { z-index: 2; }
+            img { width: 100%; left: 0; top: 0; position: absolute; }
+            span { font-size: var(--fL);
+                span { font-weight: bold; color: var(--k1); }}
+            i, svg { color: var(--cG4); }}
+        // 登出
+        section.account { width: 100%; display: flex; align-items: center; justify-content: space-between;
+            div { display: flex; flex-direction: column;
+                span:last-child { font-size: var(--fS); color: var(--cG3); }}
+            a { text-decoration: underline !important; color: var(--cG3); }}
+        // 點數
+        section.point {
+            div.top { display: flex; align-items: center; gap: 5px;
+                span:not(.title) { font-size: var(--fL); }
+                img { height: 20px; }}
+            div.center { width: 100%; display: flex; gap: 10px;
+                a { width: calc(50% - 5px); height: 50px; padding: 0 10px; border-radius: 99px; display: flex; align-items: center; gap: 5px; background-color: var(--cBg);
+                    &.active { border: 1px solid var(--k1); }
+                    img { width: 20px; }
+                    div { display: flex; flex-direction: column; gap: 5px;
+                        span { line-height: 100%;
+                            &:first-child { font-size: var(--fS); }}}}}
+            div.bottom { width: 100%; margin-top: -10px; display: flex; align-items: center; justify-content: space-between;
+                div { display: flex; align-items: center; gap: 2px; }
+                span { font-size: var(--fS); color: var(--cG3); white-space: nowrap; }
+                img { height: 14px; }}}
+        // 付款
+        section.type {
+            div.top { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 5px;
+                span:not(.title) { font-size: var(--fS); color: var(--cRed); text-align: right; line-height: unset; }
+                i, svg { color: var(--cRed); }}
+            div.center { width: 100%; display: flex; gap: 10px;
+                a { width: calc(50% - 5px); height: 40px; padding: 0 10px; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; gap: 5px; background-color: var(--cBg); 
+                    &.active { border: 1px solid var(--k1); }
+                    img { max-width: 80px; max-height: 30px; }
+                    i.fa-chevron-right, svg.fa-chevron-right { position: absolute; right: 10px; color: var(--cG4); }}}}
+        // 鍵盤
+        section.keyboard { width: 100%; display: flex; flex-direction: column; gap: 10px;
+            div { width: 100%; display: flex; gap: 10px;
+                a { width: 100%; height: 60px; border-radius: 99px; display: flex; align-items: center; justify-content: center; background-color: var(--cBg); font-size: var(--fXL);
+                    &.minor { background-color: transparent; color: var(--cG3); font-size: var(--fL); }
+                    i, svg { color: var(--cG4); }}}}
+        // 會員集點
+        section.phone {
+            span.gap { margin: 0 5px; color: var(--cG5); }
+            input { font-size: var(--fL) !important;
+                &.fit { width: 40px; }}}
+        // 條款
+        section.policy { width: 100%; display: flex; flex-direction: column; align-items: center;
+            span { font-size: var(--fS); text-align: center; color: var(--cG4);
+                a { font-size: var(--fS); color: var(--k1); }}
+        }}
+    section.pop.credit { 
+        span.title { font-size: var(--fL); font-weight: bold; }
+        div.list { display: flex; flex-direction: column; gap: 10px;
+            a { width: 100%; height: 40px; padding: 0 10px; border-radius: 99px; display: flex; gap: 10px; align-items: center; background-color: var(--cBg);
+                &.active { border: 1px solid var(--k1); }
+                span { white-space: nowrap;
+                    &:first-child { width: 100%; }
+                    &:nth-child(2) { font-size: var(--fS); color: var(--cG3); }}
+                img { width: 30px; }}}
+        div.new { display: flex; flex-direction: column; gap: 10px;
+            span.title { font-weight: bold; }
+            span:not(.title) { color: var(--cG3); font-size: var(--fS); }
+            div input { width: 100%; height: 30px; border-bottom: 1px solid var(--cG4); border-radius: 0; font-size: var(--fL); }
+            div:not(.row) { width: 100%; display: flex; flex-direction: column; }
+            div.row { display: flex; gap: 15px; }
+            .tpfield { width: 100% !important; height: 30px !important; border-bottom: 1px solid var(--cG4) !important; font-size: var(--fL) !important; }
+            iframe { height: 30px !important; 
+                input { border-bottom: 1px solid var(--cG4); font-size: var(--fL); }}}
+        div.buttons { display: flex; gap: 10px;
+            button:first-child { background-color: var(--cBg);
+                span { color: var(--cG2) !important; }}}}
+    section.pop.confirm { align-items: center;
+        .popBody { align-items: center;
+            > div:not(.buttons) { display: flex; flex-direction: column; align-items: center; gap: 0; }
+                > div { display: flex; align-items: center; gap: 5px;
+                    img { height: 14px; }}
+            span {
+                &.title { font-size: var(--fL); color: var(--cG3); }
+                &.cost { font-size: var(--fXXL); }
+                &.subTitle { font-size: var(fS); color: var(--cG3); }}
+            div.buttons { width: 100%; display: flex; gap: 10px;
+                button:first-child { background-color: var(--cBg);
+                    span { color: var(--cG2) !important; }}}}}
+    section.pop.notice.error {
+        .icon div { border: 7.5px solid var(--cRed);
+            i, svg { color: var(--cRed); }}}
+    section.pop.notice.order .popBody { overflow-y: scroll;
+        div.content { align-items: flex-start; gap: 10px;
+            span { margin-left: 24px; color: var(--cG3); text-align: left;
+                &.header { margin-left: 0; font-size: var(--fL); color: var(--cG1); }
+                &.subheader { font-weight: bold; color: var(--cG1); }}}
+        button { min-height: 40px; }}}
+
+// 付款結果頁
+.result { min-width: 100vw; min-height: 100vh; overflow: auto; background-color: var(--cBg);
+    &.topup {
+        section.head {
+            div.bg { background: var(--k1); }
+            > div:not(.bg) { display: flex; flex-direction: column; align-items: center;
+                span { color: white;
+                    &:last-child { font-size: var(--fL); }}
+            }
+        }
+    }
+    section.head { > span { font-size: var(--fXL); }}
+    section.main { width: 100%; max-width: 430px; padding: 140px 20px 50px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px;
+        section.detail { width: 100%; padding: 20px; border-radius: 20px; display: flex; flex-direction: column; gap: 30px; background-color: white;
+            div.top { display: flex; flex-direction: column; align-items: center;
+                div.icon { animation: spark 1s linear infinite; }
+                @keyframes spark { 0% { opacity: 1; } 25% { opacity: 1; } 50% { opacity: 0; }100% { opacity: 1; }}
+                span { text-align: center;
+                    &.title { font-size: var(--fXL);
+                        &.green { color: var(--cGreen); }
+                        &.orange { color: var(--cOrange); }
+                        &.red { color: var(--cRed); }}
+                    &.cost { font-size: var(--fXXL); }
+                    &.remark { font-size: var(--fS); color: var(--cG3); }
+                    &.warning { font-size: var(--fS); color: var(--cRed); }
+                    &.strong { font-size: var(--fXL); color: var(--cRed); animation: shake 1s linear infinite; }}
+                @keyframes shake { 0% { margin-left: -20px; } 50% { margin-left: 20px; } 100% { margin-left: -20px; }}
+                > div:not(.icon) { display: flex; align-items: center; gap: 2px;
+                    img { height: 18px; }}}
+            div.bank { padding: 15px; border: 2px solid #29617F; border-radius: 20px; display: flex; flex-direction: column; gap: 10px;
+                > div { display: flex; align-items: center; gap: 5px;
+                    &:last-child { align-items: flex-end; }
+                    img { height: 25px; }
+                    i, svg { color: #29617F; }
+                    a { display: flex; align-items: center; gap: 5px;
+                        span { color: var(--cG1) !important; }}
+                    span { white-space: nowrap;
+                        &:first-child { width: 100%; color: var(--cG3); }
+                        &.title { font-weight: bold; color: var(--cG1); }
+                        &.remark { font-size: var(--fXS); color: var(--cRed); white-space: unset; }}
+                    button { width: fit-content; height: 30px; padding: 0 10px; margin-left: 10px; background-color: #29617F; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);
+                        i, svg { color: white; }
+                        span { font-size: var(--fS); }}
+                }
+            }
+            div.center { display: flex; flex-direction: column; gap: 10px;
+                > div { display: flex; align-items: center; gap: 2px;
+                    &.lineH { width: 100%; height: 1px; margin: 10px 0; background-color: var(--cG5); }
+                    span { white-space: nowrap;
+                        &:first-child { width: 100%; color: var(--cG3); }}
+                    img { height: 18px; }}}
+            div.bottom { width: 100%; padding: 10px 15px; border: 1px solid var(--cG5); border-radius: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center;
+                > div { width: 100%; display: flex; align-items: center; gap: 2px;
+                    span { white-space: nowrap; }
+                    span:nth-child(2) { width: 100%; color: var(--cG3); }
+                    img { min-width: 24px; height: 18px; object-fit: contain; }}
+                span.title { color: var(--k1); }}
+            div.buttons { display: flex; gap: 10px;
+                button:first-child { background-color: var(--cBg);
+                    span { color: var(--cG2) !important; }
+                    i, svg { color: var(--k1); }}
+                button:last-child { background-color: var(--k1);
+                    span { color: white !important; }}}}
+        a.invite { width: 100%; height: 50px; padding: 0 15px; border: 1px solid var(--k1); border-radius: 99px; position: relative; display: flex; align-items: center; justify-content: space-between; background-color: white; overflow: hidden;
+            > * { z-index: 2; }
+            img { width: 100%; left: 0; top: 0; position: absolute; }
+            span { font-size: var(--fL);
+                span { font-weight: bold; color: var(--k1); }}
+            i, svg { color: var(--cG4); }}
+        a.join { width: 100%; height: 50px; padding: 0 15px; border-radius: 99px; position: relative; display: flex; align-items: center; justify-content: space-between; background-color: var(--k1); overflow: hidden;
+            > * { z-index: 2; }
+            img { width: 100%; left: 0; top: 0; position: absolute; }
+            span { font-size: var(--fL); color: white;
+                span { font-weight: bold; }}
+            i, svg { color: rgba(255, 255, 255, 0.5); }}}}
+
+// 付款金額
+.price {
+    section.head { > span { font-size: var(--fXL); }}
+    section.foot { width: 100%; max-width: 430px; padding: 20px 20px 30px; left: 50%; transform: translate(-50%, 0); border-radius: 20px 20px 0 0; position: fixed; bottom: 0; background-color: fade(white, 95%); z-index: 5;
+        button span { font-size: var(--fL); }}
+    section.main { width: 100%; max-width: 430px; padding: 130px 20px 50px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 50px;
+        span.title { font-size: var(--fL); font-weight: bold; }
+        span.cost { font-size: var(--fXXL); color: var(--k1); }
+        div.keyboard { width: 100%; display: flex; flex-direction: column; gap: 10px;
+            div { width: 100%; display: flex; gap: 10px;
+                a { width: 100%; height: 60px; border-radius: 99px; display: flex; align-items: center; justify-content: center; background-color: var(--cBg); font-size: var(--fXL);
+                    &.minor { background-color: transparent; color: var(--cG3); font-size: var(--fL); }
+                    i, svg { color: var(--cG4); }}}}}}
+
+// 登入
+.welcome { min-width: 100vw; min-height: 100vh; overflow: auto; background-color: var(--cBg);
+    section.main { width: 100%; max-width: 430px; min-height: 100vh; padding: 30px 30px 0; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; background-image: url(../img/pattern.png); background-position: center; background-attachment: fixed; background-size: cover;
+        div.top { margin: auto 0; display: flex; flex-direction: column; align-items: center; gap: 40px;
+            img.logo { width: 150px; height: 150px; border-radius: 20px; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2); }
+            > div { display: flex; flex-direction: column; gap: 20px;
+                div.item { display: flex; align-items: center; gap: 10px;
+                    > div.icon { min-width: 60px; min-height: 60px; border: 1px solid var(--cG5); border-radius: 99px; display: flex; align-items: center; justify-content: center; background-color: white;
+                        img { width: 30px; }}
+                    > div:not(.icon) { display: flex; flex-direction: column;
+                        span { font-size: var(--fS);
+                            &.title { font-size: var(--fL); color: var(--k1); }}}}}}
+        div.action { width: 100vw; max-width: 430px; height: 400px; padding: 50px 20px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 20px; overflow: hidden;
+            > * { z-index: 1; }
+            div.bg { width: 1000px; height: 1000px; margin-right: 150px; border-radius: 999px; top: 0; position: absolute; background: var(--k1); pointer-events: none; z-index: 0; }
+            button { width: 250px; min-height: 40px; background-color: white; color: var(--k1);
+                &.signin { border-radius: 5px;
+                    &.line { background-color: #06C755;
+                        > div { background-color: #06C755; position: relative;
+                            div.white { width: 26px; height: 26px; border-radius: 99px; position: absolute; background-color: white; }
+                            i, svg { color: #06C755; z-index: 1; }}
+                        span { color: white !important; }}
+                    > div { min-width: 50px; height: 40px; border-right: 1px solid rgba(0, 0, 0, 0.08); border-radius: 5px 0 0 5px; display: flex; align-items: center; justify-content: center;
+                        i, svg { color: var(--k1); }}
+                    span { width: 100%; }}
+                span { color: var(--k1) !important; }}
+            > span { font-size: var(--fS); text-align: center; color: var(--cG5);
+                &.title { font-size: var(--fL); font-weight: bold; color: white; }
+                a { font-size: var(--fS); color: white; }}
+            > a { border-radius: 999px;
+                i, svg { color: white; }}
+            div.service { display: flex; align-items: center; gap: 2px;
+                img { width: 20px; margin: 0 5px; }
+                span { color: white; font-size: var(--fS); }}}}}
+
+// 登入
+.login { min-width: 100vw; min-height: 100vh; overflow: auto;
+    section.head { background: rgba(255, 255, 255, 0.95);
+        .left a { min-width: 30px; min-height: 30px; border-radius: 99px; display: flex; align-items: center; justify-content: center; color: var(--k1); }
+        > span { white-space: nowrap; font-size: var(--fL); }}
+    section.main { width: 100%; max-width: 430px; min-height: 100vh; padding: 70px 30px 0; margin: 0 auto; display: flex; flex-direction: column; gap: 30px;
+        form.edit-userinfo { margin: auto 0; }
+        div.inputs { margin: auto 0; display: flex; flex-direction: column; gap: 15px;
+            div.input { display: flex; flex-direction: column;
+                span.title { color: var(--k1);
+                    span { color: var(--cRed); }}
+                > div:not(.error) { gap: 10px; display: flex; align-items: center; border-bottom: 1px solid var(--cG5);
+                    input { width: 100%; height: 40px; font-size: var(--fL); border-radius: 0;
+                        &::placeholder { color: var(--cG4); }
+                        &.code { width: 60px; height: 30px; border-right: 1px solid var(--cG5); }}
+                    button { width: fit-content; height: 30px; padding: 0 10px;
+                        span { color: white; white-space: nowrap; }}
+                    a.delete { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: var(--cG4); }}
+                > div.error { width: 100%; display: flex; justify-content: flex-end; margin-top: -1.5px; border-top: 2px solid var(--cRed);
+                    span { color: var(--cRed); font-size: var(--fS); }}}}
+        div.action { width: 100vw; max-width: 430px; height: 250px; margin-left: -30px; padding-top: 20px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; overflow: hidden;
+            div.bg { width: 1000px; height: 1000px; margin-right: 150px; border-radius: 999px; top: 0; position: absolute; background: var(--k1); pointer-events: none; z-index: -1; }
+            button { width: 250px; min-height: 40px; background-color: white;
+                span { color: var(--k1) !important; }}
+            > span { font-size: var(--fS); text-align: center; color: var(--cG5);
+                a { font-size: var(--fS); color: white; }}}}}
+
+// 點數
+.coin { min-width: 100vw; min-height: 100vh; overflow: auto;
+    section.head {
+        .left a { min-width: 30px; min-height: 30px; border-radius: 99px; display: flex; align-items: center; justify-content: center; color: var(--k1); }
+        > span { white-space: nowrap; font-size: var(--fL);
+            &.content { font-size: var(--fXL); font-weight: bold; }}
+        > img { height: 28px; }}
+    section.main { width: 100%; max-width: 430px; padding: 100px 20px 100px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;
+        div.item { width: 100%; display: flex; align-items: center; justify-content: space-between;
+            &:not(:last-child) { padding-bottom: 20px; border-bottom: 1px solid var(--cG5); }
+            div.left { display: flex; flex-direction: column;
+                span { font-size: var(--fL);
+                    &.content { font-size: var(--fM); color: var(--cG3); }}}
+            div.right { display: flex; align-items: center; gap: 5px;
+                span { font-size: var(--fL); font-weight: bold;
+                    &.negative { color: var(--cRed); }}
+                img { height: 20px; }}}}}
+
+// 票券列表
+.tickets { min-width: 100vw; min-height: 100vh; overflow: auto; background-color: var(--cBg);
+    section.head {
+        .left a { min-width: 30px; min-height: 30px; border-radius: 99px; display: flex; align-items: center; justify-content: center; color: var(--k1); }
+        > span { white-space: nowrap; font-size: var(--fL); }
+        .right a { color: var(--k1); }}
+    section.main { width: 100%; max-width: 430px; padding: 100px 20px 100px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;
+        @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 20px; }}
+        div.none { margin: 100px 0; gap: 10px; display: flex; flex-direction: column; align-items: center;
+            span { text-align: center; font-size: var(--fL); color: var(--cG3); }}
+        button.action { width: fit-content; padding: 0 15px; position: fixed; left: 50%; bottom: 30px; transform: translate(-50%, 0); color: white; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2); z-index: 2; white-space: nowrap;
+            @supports (-webkit-touch-callout: none) and (not (translate: none)) { width: auto !important; }}}}
+
+// 票券
+.ticket { min-width: 100vw; min-height: 100vh; background: var(--k2);
+    section.head { height: 60px; padding: 20px; background: var(--k2);
+        .left a { min-width: 30px; min-height: 30px; border-radius: 99px; display: flex; align-items: center; justify-content: center; color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.foot { width: 100%; max-width: 430px; padding: 20px 20px 30px; border-radius: 20px 20px 0 0; left: 50%; transform: translate(-50%, 0); bottom: 0; position: fixed; display: flex; gap: 10px; z-index: 5; background: var(--k2);
+        @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-right: 10px; }}
+        button {
+            &.secondary { background-color: white;
+                span { color: var(--k1) !important; }}
+            span { font-size: var(--fL); }}}
+    section.main { width: 100%; max-width: 430px; padding: 60px 20px 90px; margin: 0 auto;
+        div.coupon { width: 100%; min-height: 450px; padding: 20px 30px; border-radius: 20px; position: relative; display: flex; flex-direction: column; gap: 20px; background-color: white; overflow: hidden;
+            @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 20px; }}
+            > img { width: 100%; border-radius: 15px;
+                @supports (-webkit-touch-callout: none) and (not (translate: none)) { width: 50%; margin: 0 auto; }}
+            > div { display: flex; flex-direction: column; gap: 5px;
+                @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 5px; }}
+                a { text-decoration: underline !important; }
+                span {
+                    &.title { font-size: var(--fXL); color: var(--k1); }
+                    &.subtitle { font-weight: bold; }
+                    &.content { color: var(--cG3); }}
+                &.dot { width: 40px; height: 40px; border-radius: 99px; z-index: 2; top: 350px; position: absolute; background: var(--k2);
+                    &.left { left: -20px; }
+                    &.right { right: -20px; }}
+                &.label { width: 200px; height: 34px; z-index: 1; transform: rotate(30deg); position: absolute; top: 10px; right: -60px; display: flex; align-items: center; justify-content: center; background-color: var(--cG4);
+                    span { font-size: var(--fL); color: white; }}
+                &.sticker { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap;
+                    img { width: calc(20% - 4px); aspect-ratio: 1/1; border-radius: 10px;
+                        &:not(.checked) { filter: grayscale(100%); opacity: 0.5; }}}}
+            a.coupon { padding: 0 25px; background-color: var(--cBg);
+                div.dot { width: 30px; height: 30px; background-color: white;
+                    &.left { left: -15px; }
+                    &.right { right: -15px; }}}
+            hr { border: 1px dashed var(--cG5); }}}
+    section.pop.notice { span:not(.title) { color: var(--cRed); }}
+    section.pop.gift .popBody {
+        > img { border-radius: 10px; }
+        > div { gap: 5px; display: flex; flex-direction: column;
+            span { color: var(--cG3);
+                &.title { font-size: var(--fXL); color: var(--k1); }}
+            div.sticker { gap: 5px; display: flex; align-items: center;
+                img { height: 50px; aspect-ratio: 1/1; border-radius: 10px; }
+                span { font-size: var(--fL); font-weight: bold; color: var(--k1); }}}
+        button { min-height: 40px;
+            &.disabled span { color: white !important; }}}}
+
+// 商店頁
+.store { min-width: 100vw; min-height: 100vh; max-height: 100vh; overflow: auto; background-color: var(--cBg); animation-name: popup; animation-duration: 0.5s; animation-iteration-count: 1;
+    &.v2 { min-width: unset; max-height: 75px; background: var(--k2); overflow: unset; overflow-x: hidden;
+        section.foot { padding: 0; box-shadow: none;
+            button { height: 70px; border-radius: 20px 20px 0 0; box-shadow: 0px -10px 20px rgba(255, 255, 255, 0.25);
+                span { font-size: var(--fL); color: rgba(255, 255, 255, 0.5) !important;
+                    &.title { font-size: var(--fXL); font-weight: bold; color: white !important; }}
+                i, svg { color: white; }}}
+        section.main { margin: 0 auto; padding: 20px 25px 90px; border-radius: 0; box-shadow: none; background-color: transparent; overflow-x: clip;
+            section.card { width: 100%; padding: 10px; margin-top: 65px; border-radius: 30px 30px 20px 20px; gap: 15px; position: relative; display: flex; flex-direction: column; background-color: white; z-index: 6;
+                div.top { width: 100%; padding: 0 10px; gap: 20px; display: flex; align-items: flex-end;
+                    span { width: 100%; font-size: var(--fXL); font-weight: bold; }
+                    div { height: 40px; display: flex; align-items: flex-end;
+                        img { width: 120px; height: 120px; border-radius: 20px; filter: drop-shadow(0px 5px 10px rgba(55, 84, 170, 0.2)); }}}
+                div.menus {
+                    div.menu { width: 100%; padding-top: 10px; gap: 20px 0; display: flex; align-items: center; flex-wrap: wrap;
+                        a { min-width: 25%; position: relative; gap: 5px; display: flex; flex-direction: column; align-items: center;
+                            &:nth-child(1) { i, svg { color: #F5B7A6; }}
+                            &:nth-child(2) { i, svg { color: #BDD7EE; }}
+                            &:nth-child(3) { i, svg { color: #FFD965; }}
+                            &:nth-child(4) { i, svg { color: var(--k1); }}
+                            &:nth-child(5) { i, svg { color: #F7CBAC; }}
+                            &:nth-child(6) { i, svg { color: #C5E0B3; }}
+                            &:nth-child(7) { i, svg { color: #CCC1D9; }}
+                            &:nth-child(8) { i, svg { color: var(--cG4); }}
+                            i, svg { color: var(--k1);
+                                &.fa-barcode        { color: #F5B7A6; }
+                                &.fa-map            { color: #BDD7EE; }
+                                &.fa-newspaper      { color: #FFD965; }
+                                &.fa-bell           { color: var(--k1); }
+                                &.fa-gift           { color: #CCC1D9; }
+                                &.fa-utensils       { color: #F7CBAC; }
+                                &.fa-line           { color: #C5E0B3; }
+                                &.fa-address-card   { color: var(--cG4); }}
+                            i { line-height: normal; }
+                            > span { font-size: var(--fS); color: var(--cG3); }
+                            div.notice { width: fit-content; min-width: 20px; height: 20px; padding: 0 5px 2px; border: 1px solid white; border-radius: 99px; top: -10px; left: 53%; position: absolute; display: flex; align-items: center; justify-content: center; background-color: var(--cRed);
+                                span { color: white; font-size: var(--fS); font-weight: bold; }}}}
+                    .flickity-button { background: transparent; }
+                    .flickity-prev-next-button { width: 30px; height: 30px; }
+                    .flickity-prev-next-button.previous { left: -10px; }
+                    .flickity-prev-next-button.next { right: -10px; }
+                    .flickity-button-icon { fill: var(--k1); }
+                    .flickity-button:disabled { display: none; }}
+                div.carousel {
+                    img { width: 100%; aspect-ratio: 16/9; border-radius: 10px; }
+                    .flickity-page-dots { bottom: 5px;
+                        .dot { margin: 0 5px; border: 1px solid white; background-color: white; opacity: 1; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);
+                            &.is-selected { background-color: var(--k1); }}}}}
+            section.tabs { top: 20px; display: flex; justify-content: center; position: sticky; z-index: 5;
+                div.bg { width: 1500px; height: 1500px; border-radius: 999px; position: absolute; bottom: -20px; background: var(--k1); pointer-events: none; z-index: 5; }
+                a { width: 100%; border-radius: 99px; display: flex; flex-direction: column; align-items: center; z-index: 6;
+                    &:hover { box-shadow: none; }
+                    &:not(.active) { opacity: 0.4; }
+                    &:nth-child(3) { margin-top: 10px; }
+                    &:last-child { margin-top: 0; }
+                    img { height: 40px; }
+                    span { color: white;
+                        span { font-size: var(--fXL); font-weight: bold; }}}}
+            section.point { margin-top: 10px; gap: 15px;
+                a.header { height: 100px; padding: 10px; border-radius: 45px 30px 20px 20px; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; background-color: white;
+                    > div { width: 100%; height: 50px; padding-right: 10px; border-radius: 45px 25px 25px 5px; gap: 15px; display: flex; align-items: center; background-color: var(--cBg);
+                        > div { height: 50px; display: flex; align-items: flex-start;
+                            img { height: 90px; margin: -5px; border: 5px solid white; border-radius: 999px; background-color: white; }}
+                        span { width: 100%;
+                            &.title { font-size: var(--fL); }
+                            &:not(.title) { font-size: var(--fXXL); color: var(--k1); text-align: end; }}}
+                    > span { color: var(--cG3); }}
+                div.list { padding: 0 5px 15px; border-bottom: 1px solid white; display: flex; align-items: center; justify-content: space-between;
+                    div { display: flex; flex-direction: column;
+                        span:first-child { font-size: var(--fL); }
+                        span:last-child { color: var(--cG3); }}
+                    > span { font-size: var(--fXL); color: var(--k1); }}
+                div.action { display: flex;
+                    a { width: 100%; gap: 5px; display: flex; align-items: center; justify-content: center;
+                        i, svg { color: var(--k1); }
+                        span { color: var(--cG3); }}}}
+            section.coupon { margin-top: 10px; gap: 15px;
+                a.list { width: 100%; gap: 5px; display: flex; align-items: center; justify-content: center;
+                    i, svg { color: var(--k1); }
+                    span { color: var(--cG3); }}
+                a.coupon div.dot { background: var(--k2); }}}}
+    a.back { width: 40px; height: 40px; border-radius: 99px; position: fixed; top: 10px; left: 15.5px; display: flex; align-items: center; justify-content: center; color: var(--k1); background-color: white; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2); z-index: 3; }
+    section.cover { width: 100%; height: 200px; margin: 0 auto; position: fixed; top: 0; left: 0; display: flex; justify-content: center; z-index: 1;
+        div.content { width: 100%; max-width: 430px; height: 100%;
+            img { width: 100%; height: 100%; }}}
+    section.main { width: 100%; min-height: unset; max-width: 430px; padding: 0 20px 140px; margin: 180px auto 0; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; gap: 30px; background-color: var(--cBg); box-shadow: 0px -10px 20px rgba(55, 84, 170, 0.1); z-index: 2; position: relative; overflow: visible;
+        @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 30px; }}
+        section.info { padding: 0 40px; display: flex; flex-direction: column; align-items: center; gap: 5px;
+            div.logo { min-height: 60px; margin-top: -50px;
+                img { height: 120px; border-radius: 20px; filter: drop-shadow(0px 5px 10px rgba(55, 84, 170, 0.2)); }}
+            span { text-align: center;
+                &.title { font-size: var(--fXL); font-weight: bold; }}
+            div.features { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+                @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-right: 10px; }}
+                div { display: flex; align-items: center; gap: 5px;
+                    @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-right: 5px; }}
+                    &:not(:first-child) { padding-left: 10px; border-left: 2px solid var(--cG5); }
+                    img { height: 20px; }
+                    i, svg { color: var(--k1); }
+                    span { white-space: nowrap; }}}}
+        section.actions { padding: 0 10px; display: flex; align-items: center; justify-content: center;
+            a { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px;
+                @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 5px; }}
+                div.icon { width: 50px; height: 50px; border-radius: 99px; position: relative; display: flex; align-items: center; justify-content: center; background-color: white;
+                    &.line i, &.line svg { color: #06C755; }
+                    i, svg { color: var(--k1); }
+                    img { height: 24px; }
+                    div.notice { width: fit-content; min-width: 20px; height: 20px; padding: 0 5px 2px; border-radius: 99px; top: -5px; left: 35px; position: absolute; display: flex; align-items: center; justify-content: center; background-color: var(--cRed);
+                        span { color: white; font-size: var(--fS); font-weight: bold; }}}
+                span { font-size: var(--fS); }}}
+        section.point { display: flex; flex-direction: column; gap: 10px;
+            @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 10px; }}
+            > span.title { font-weight: bold; }
+            a.point { width: 100%; padding: 10px; border-radius: 20px; display: flex; align-items: center; gap: 10px; background-color: white;
+                @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-right: 10px; }}
+                img { width: 40px; }
+                > div { width: 100%; display: flex; flex-direction: column;
+                    span:not(.title) { font-size: var(--fS); color: var(--cG3); }}
+                > span { font-size: var(--fL); color: var(--k1); }
+                > i, > svg { color: var(--cG4); }}}
+        section.coupon { display: flex; flex-direction: column; gap: 10px;
+            @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 10px; }}
+            div.top {  display: flex; align-items: center; justify-content: space-between;
+                span.title { font-weight: bold; }
+                i, svg { color: var(--k1); }}}
+        section.detail { display: flex; flex-direction: column; gap: 10px;
+            @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-bottom: 10px; }}
+            span.title { font-weight: bold; margin-bottom: 10px; }
+            > div { display: flex; gap: 10px;
+                @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-right: 10px; }}
+                span { width: 100%;
+                    &.right { text-align: end; }}
+                a { min-width: 34px; height: 34px; border-radius: 99px; display: flex; align-items: center; justify-content: center; background-color: white; color: var(--cG4);
+                    &:last-child { color: var(--k1); }}}
+            div.branch a { color: var(--k1); }
+            div.map { width: 100%; height: 250px; border-radius: 20px; overflow: hidden;
+                img { width: 100%; height: 100%; }}}}
+    section.foot { width: 100%; max-width: 430px; padding: 20px 20px 30px; left: 50%; transform: translate(-50%, 0); border-radius: 20px 20px 0 0; position: fixed; bottom: 0; background: var(--k2); box-shadow: 0px -10px 20px rgba(55, 84, 170, 0.1); z-index: 5;
+        button { display: flex; align-items: center; gap: 10px;
+            @supports (-webkit-touch-callout: none) and (not (translate: none)) { > *:not(:last-child) { margin-right: 10px; }}
+            span { font-size: var(--fL); }
+            i, svg { color: white; }}}
+    section.pop.pointRule .popBody { background: var(--k2);
+        span.title { font-size: var(--fL); }
+        > div { padding: 10px; border-radius: 10px; gap: 10px; display: flex; flex-direction: column; align-items: center; background-color: white;
+            i, svg { color: var(--k1); }
+            div.top { gap: 5px; display: flex; align-items: center;
+                span { font-size: var(--fXL); }}
+            div.bottom { width: 100%; display: flex; align-items: center;
+                span { width: 100%; font-size: var(--fL); text-align: center; color: var(--cG3); }}}}}
+
+// 分店資訊
+.location { overflow: auto; background: var(--k2);
+    a.back { width: 40px; height: 40px; border-radius: 99px; position: fixed; top: 10px; left: 15.5px; display: flex; align-items: center; justify-content: center; color: var(--k1); background-color: white; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2); z-index: 3; }
+    section.cover { width: 100%; max-width: 430px; aspect-ratio: 4/3; position: fixed; top: 0; left: 50%; transform: translate(-50%, 0);
+        img { width: 100%; height: 100%; }}
+    section.main { width: 100%; min-height: 100vh; max-width: 430px; padding: 20px; margin: 280px auto 0; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; gap: 20px; background: var(--k2); box-shadow: 0px -10px 20px rgba(55, 84, 170, 0.1); z-index: 2; position: relative; overflow: visible;
+        .item { height: 48px; padding: 10px; border-radius: 27px; gap: 10px; display: flex; flex-direction: column; background-color: white; overflow: hidden;
+            &.dropup { height: 48px; animation-name: dropup; animation-duration: 0.5s; animation-iteration-count: 1;
+                a.top { i, svg { transform: rotate(0deg); animation-name: rotateup; animation-duration: 0.5s; animation-iteration-count: 1; }}}
+            &.dropdown { height: 500px; animation-name: dropdown; animation-duration: 0.5s; animation-iteration-count: 1;
+                a.top { i, svg { transform: rotate(180deg); animation-name: rotatedown; animation-duration: 0.5s; animation-iteration-count: 1; }}}
+            @keyframes dropup { 0% { height: 500px; } 100% { height: 48px; } }
+            @keyframes dropdown { 0% { height: 48px; } 100% { height: 500px; } }
+            @keyframes rotateup { 0% { transform: rotate(180deg); } 100% { transform: rotate(360deg); } }
+            @keyframes rotatedown { 0% { transform: rotate(0deg); } 100% { transform: rotate(180deg); } }
+            a.top { width: 100%; padding-right: 5px; border-radius: 99px; display: flex; align-items: center;
+                i, svg { color: var(--k1); }}
+            span { width: 100%;
+                &.title { font-size: var(--fL); font-weight: bold; }
+                &.copy { width: fit-content; font-size: var(--fS); color: var(--cG3); white-space: nowrap; }
+                &:not(.title) { color: var(--cG3); }
+                &:last-child { text-align: end; }}
+            div { gap: 10px; display: flex; align-items: center;
+                &.time { align-items: flex-start; }
+                &.map { width: 100%; height: 100%; border-radius: 20px; overflow: hidden;
+                    img { width: 100%; height: 100%; }}
+                a { min-width: 34px; min-height: 34px; border-radius: 99px; display: flex; align-items: center; justify-content: center; background: var(--cBg);
+                    i, svg { color: var(--cG4); }
+                    &:last-child { background: var(--k2);
+                        i, svg { color: var(--k1); }}
+                    &.dropdown { background: transparent; }}}}}}
+
+// 最新消息
+.news { min-height: 100vh; background: var(--k2);
+    section.head { background: var(--k2);
+        i, svg { color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.main { width: 100%; max-width: 430px; padding: 70px 20px 50px; margin: 0 auto; gap: 20px; display: flex; flex-direction: column; align-items: center;
+        div.item { padding: 10px; border-radius: 20px; gap: 10px; display: flex; flex-direction: column; background-color: white;
+            img { width: 100%; aspect-ratio: 16/9; border-radius: 10px; }
+            span.title { font-size: var(--fL); }
+            > span:not(.title) { max-height: 100px; color: var(--cG3); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+            a { width: 100%; display: flex; align-items: center; justify-content: center;
+                > * { color: var(--k1); }}}}}
+.new {
+    section.head { background: var(--k2);
+        i, svg { color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.main { width: 100%; max-width: 430px; padding: 80px 30px 50px; margin: 0 auto; gap: 10px; display: flex; flex-direction: column;
+        img { width: 100%; border-radius: 10px; }
+        span.title { font-size: var(--fL); }
+        span:not(.title) { color: var(--cG3); }
+        button { width: 50%; margin: 20px auto 0; }}}
+
+// 帳號設定
+.profile { min-height: 100vh; background: var(--k2);
+    section.head { background: var(--k2);
+        i, svg { color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.main { width: 100%; max-width: 430px; padding: 70px 20px 50px; margin: 0 auto; gap: 30px; display: flex; flex-direction: column; align-items: center;
+        div.line { width: 100vw; max-width: 430px; height: 5px; background-color: white; }
+        section.barcode { width: 100%;
+            .popBody { width: 100%; padding: 20px; display: flex; flex-direction: column; gap: 20px; background-color: white; box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2); }}
+        section.list { width: 100%; gap: 10px; display: flex; flex-direction: column;
+            &.account { 
+                i:first-child, svg:first-child { color: var(--k1); }}
+            &.setting {
+                i:first-child, svg:first-child { color: var(--cG4); }}
+            a { width: 100%; padding: 0 5px; gap: 10px; display: flex; align-items: center;
+                &:not(:last-child) { padding-bottom: 10px; border-bottom: 1px solid white; }
+                span { white-space: nowrap;
+                    &:nth-child(2) { width: 100%; }
+                    &:not(:nth-child(2)) { color: var(--k1); }}
+                i:first-child, svg:first-child { min-width: 20px; display: flex; justify-content: center; }
+                i:last-child, svg:last-child { color: var(--cG4); }}}
+        span.remark { font-size: var(--fS); text-align: center; color: var(--cG3); }}}
+
+// 帳號編輯
+.profileEdit {
+    section.head { height: 60px; padding-bottom: 20px; background: var(--k2);
+        i, svg { color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.main { width: 100%; max-width: 430px; padding: 80px 20px 50px; margin: 0 auto; gap: 30px; display: flex; flex-direction: column; align-items: center;
+        img { height: 100px; aspect-ratio: 1/1; border-radius: 20px; }
+        div.inputs { width: 100%; gap: 10px; display: flex; flex-direction: column;
+            div.input { width: 100%; display: flex; flex-direction: column;
+                span { color: var(--k1);
+                    &.error { font-size: var(--fS); text-align: right; color: var(--cRed); }}
+                input, a { width: 100%; min-height: 30px; border-bottom: 1px solid var(--cG5); border-radius: 0; font-size: var(--fL);
+                    &.error { border-bottom: 1px solid var(--cRed); }
+                    &::-webkit-date-and-time-value { text-align: left; }}}}
+        div.buttons { width: 100%; gap: 10px; display: flex;
+            button:first-child { background-color: var(--cBg);
+                span { color: var(--k1) !important; }}
+            button:last-child { background-color: var(--k1);
+                span { color: white; }}}}}
+
+// 手機載具
+.carrier {
+    section.head { height: 60px; padding-bottom: 20px; background: var(--k2);
+        i, svg { color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.main { width: 100%; max-width: 430px; padding: 80px 20px 50px; margin: 0 auto; gap: 30px; display: flex; flex-direction: column; align-items: center;
+        div.inputs { width: 100%; gap: 10px; display: flex; flex-direction: column;
+            div.input { width: 100%; display: flex; flex-direction: column;
+                span { color: var(--k1);
+                    &.error { font-size: var(--fS); text-align: right; color: var(--cRed); }}
+                input, a { width: 100%; border-bottom: 1px solid var(--cG5); border-radius: 0; font-size: var(--fL);
+                    &.error { border-bottom: 1px solid var(--cRed); }
+                    &::-webkit-date-and-time-value { text-align: left; }}}}
+        a.forget { font-size: var(--fS); text-decoration: underline !important; color: var(--cG3); }
+        button { width: 50%;
+            &.secondary { background-color: var(--cBg);
+                span { color: var(--k1) !important; }}}
+        span {
+            &.comment { font-size: var(--fS); text-align: center; color: var(--cG3);
+                a { font-size: var(--fS); color: var(--k1); }}
+            &.title { font-size: var(--fXXL); color: var(--cGreen); }
+            &.content { font-size: var(--fXL); text-align: center; }}
+        i, svg {
+            &.fa-circle-check { margin-top: 50px; border-radius: 99px; background-color: white; color: var(--cGreen); box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2); }}}}
+
+// 服務條款
+.policy {
+    section.head { height: 60px; padding-bottom: 20px; background: var(--k2);
+        i, svg { color: var(--k1); }
+        > span { font-size: var(--fL); white-space: nowrap; }}
+    section.main { width: 100%; max-width: 430px; padding: 80px 20px 50px; margin: 0 auto; gap: 30px; display: flex; flex-direction: column; align-items: center;
+        li { margin-left: 20px; }}}
+
+// Line會員條碼
+.lineCode {
+    section.main { width: 100%; max-width: 430px; margin: 0 auto; gap: 30px; display: flex; flex-direction: column; align-items: center;
+        section.barcode { width: 100%;
+            .popBody { width: 100%; height: 100vh; max-height: 100vh; padding: 0 10px 10px; border-radius: 0; gap: unset; display: flex; flex-direction: column; justify-content: space-between;
+                .code { height: unset; height: calc(100% - 165px); padding: 0 10px;
+                    img { height: unset; max-width: 100%; max-height: 100%; }}
+                .action { padding: 0 20px; }}}}}
+
+// Line跳轉
+.lineLoad {
+    section.main { min-width: 100vw; min-height: 100vh; gap: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--k1);
+        span { font-size: var(--fL); color: white; }
+        .lds-ripple { width: 72px; height: 72px; display: inline-block; position: relative; }
+        .lds-ripple div { position: absolute; border: 4px solid #fff; opacity: 1; border-radius: 50%; animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+        .lds-ripple div:nth-child(2) { animation-delay: -0.5s; }
+        @keyframes lds-ripple {
+            0% { top: 36px; left: 36px; width: 0; height: 0; opacity: 0; }
+            4.9% { top: 36px; left: 36px; width: 0; height: 0; opacity: 0; }
+            5% { top: 36px; left: 36px; width: 0; height: 0; opacity: 1; }
+            100% { top: 0px; left: 0px; width: 72px; height: 72px; opacity: 0; }}}}
+
+// 錯誤頁
+.fault { min-width: 100%; min-height: 100vh; background-color: var(--k1);
+    section.main { width: 100%; max-width: 430px; min-height: 100vh; margin: 0 auto; display: flex; flex-direction: column; align-items: center;
+        div.top { margin: auto; gap: 20px; display: flex; flex-direction: column; align-items: center;
+            i, svg { color: white; }
+            span { font-size: var(--fL); color: rgba(255, 255, 255, 0.5);
+                &.title { font-size: var(--fXXL); color: white; }}}
+        a { min-width: 70px; min-height: 70px; margin-bottom: 150px; border-radius: 99px; display: flex; align-items: center; justify-content: center; background-color: white; box-shadow: 0px 10px 20px rgba(55, 84, 170, 0.2);
+            i, svg { color: var(--k1); }}}}
