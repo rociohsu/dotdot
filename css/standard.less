@@ -164,7 +164,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
             a { color: var(--color-regular); }
         }
 
-        .btn { display: block; width: 160px; margin: 7vh auto 10px auto; padding: 10px 30px; color: var(--color-white); font-weight: 700; background: var(--color-orange); .rounded-corners(99px); }
+        .btn { display: block; width: 160px; margin: 7vh auto 10px auto; padding: 10px 30px; color: var(--color-white); font-weight: 700; line-height: 24px; background: var(--color-orange); .rounded-corners(99px); }
 
         .register { text-align: center;
             a { color: var(--color-orange); font-weight: 700; }
@@ -284,7 +284,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
     z-index: 2;
 
     > * { width: 100%; }
-    > h1 { display: inline-flex; align-items: center; color: var(--color-white); font-size: 24px; 
+    > h1 { display: inline-flex; align-items: center; color: var(--color-orange); font-size: 24px; 
         i { margin-right: 5px; }
     }
     > h2 { color: var(--color-white); font-size: 18px; font-weight: normal; text-align: center; line-height: 18px; 
@@ -320,6 +320,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
     }
 }
 .top-bar.circle { max-width: 450px; background: none; }
+.topup .top-bar > h1 { color: var(--color-white); }
 
 .main-container { margin-top: 60px; padding: 10px 20px 40px 20px; }
 
@@ -435,7 +436,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         .rounded-corners (30px); background: var(--color-bggray) url('@{img-path}filter-arrow.svg') no-repeat; background-position: calc(100% - 15px) center; background-size: 10px; }
     .store-counter { margin-right: 5px; padding-right: 30px; white-space: nowrap; }
     .time-select { margin-left: 5px; padding-right: 30px; white-space: nowrap; background-image: url('@{img-path}calendar.svg') !important; background-size: 14px; }
-    .time-select.full { margin-left: 0; }
+    .time-select.full { width: 101%; margin-left: 0; margin-right: 0; }
 }
 .filter-bar.invoice { width: 100%; flex-flow: wrap;
     > * { margin: 5px auto 30px auto; padding: 5px 0; 
@@ -445,12 +446,12 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
     .store-counter { width: 49%; margin-right: 0; }
     .full { width: 100%; }
 }
-.filter-bar.record { width: 100%; flex-flow: wrap;
+.filter-bar.record { width: 100%; flex-flow: nowrap;
     > * { margin-top: 10px;
         background-image: url('@{img-path}filter-arrow-o.svg');
     }
-    .store-counter { width: 49%; margin-right: 0; }
-    .full { width: 100%; }
+    .store-counter { width: 100%; margin-right: 5px; }
+    .store-counter:last-child { margin-right: 0; }
 }
 
 /* 交易紀錄 */
@@ -711,6 +712,21 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
                     border-width: 9px; border-color: var(--color-orange); }
             }
        }
+    }
+
+    .agree { position: relative; width: 100%; max-width: 600px; margin: 20px auto; font-size: 14px; z-index: 1;
+        * { font-size: 14px; }
+        a { color: var(--color-blue); }
+
+        input[type=radio], input[type=checkbox] { display: none; }
+
+        label { display: inline-flex; flex-flow: nowrap; align-items: flex-start;
+            .check { display: inline-block; width: 10px; height: 10px; margin-right: 5px; background: var(--color-bggray); .rounded-corners(2px); }
+        }
+
+        input[type=radio]:checked + label, input[type=checkbox]:checked + label {
+            .check { background: var(--color-white) url('@{img-path}checked.svg') no-repeat center; background-size: 100%; }
+        }
     }
 }
 .topup.bg-none { background: none; }
