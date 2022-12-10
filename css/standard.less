@@ -272,7 +272,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
                     .icon-line { display: inline-block; width: 22px; height: 22px; margin-left: 20px; background: url('@{img-path}line-2.svg') no-repeat center; background-size: contain; }
                 }
                 .right {
-                    > input { text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+                    > input { text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
                 }
             }
         }
@@ -288,7 +288,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         i { margin-right: 5px; }
     }
     > h2 { color: var(--color-white); font-size: 18px; font-weight: normal; text-align: center; line-height: 18px; 
-        .store-name { font-size: 14px; }
+        .store-name { max-width: 240px; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
     }
     .nav { display: inline-flex; justify-content: flex-end; align-items: center;
         a { display: block; position: relative; margin-left: 15px;
