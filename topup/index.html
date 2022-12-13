@@ -52,6 +52,7 @@
                 <!-- 已開啟自動儲值狀態, class加上auto -->
                 <div class="status auto"><i class="fa-solid fa-circle"></i> 自動儲值</div>
                 <div class="name">起家雞 總部</div>
+                <div class="id">ID:654321</div>
                 <div class="money"><i class="icon-dollar"></i> 5000</div>
                 <div class="link">
                     <a href="record.html">交易明細</a>
@@ -64,8 +65,21 @@
             <div class="store-list">
                 <div class="status"><i class="fa-solid fa-circle"></i> 未開啟自動儲值</div>
                 <div class="name">50嵐 總部</div>
+                <div class="id">ID:654321</div>
                 <div class="money red-text"><i class="icon-dollar"></i> -84</div>
-                <div class="remind red-text">儲值金不足，請立即儲值以免服務收到影響</div>
+                <div class="link">
+                    <a href="record.html">交易明細</a>
+                    <a href="setting.html">通知設定</a>
+                    <a class="popup" rel="auto-topup-open">自動儲值</a>
+                </div>
+                <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+            </div><!-- END .store-list -->
+
+            <div class="store-list">
+                <div class="status red-text"><i class="fa-solid red-text fa-circle"></i> 儲值金不足，請立即儲值以免服務收到影響</div>
+                <div class="name">50嵐 總部</div>
+                <div class="id">ID:654321</div>
+                <div class="money red-text"><i class="icon-dollar"></i> -84</div>
                 <div class="link">
                     <a href="record.html">交易明細</a>
                     <a href="setting.html">通知設定</a>
@@ -77,6 +91,7 @@
             <div class="store-list disabled">
                 <div class="status"><i class="fa-solid fa-circle"></i> 未開啟自動儲值</div>
                 <div class="name">麥町吐司工房 總部</div>
+                <div class="id">ID:654321</div>
                 <div class="money"><i class="icon-dollar"></i> 0</div>
                 <div class="link">
                     <a>交易明細</a>
@@ -86,7 +101,14 @@
                 <a class="add-btn"><i class="fa-solid fa-circle-plus"></i></a>
             </div><!-- END .store-list -->
         </div><!-- END .main-container -->
-    </section>
+
+        <div class="agree" align="center">
+            <label for="agree">
+                <span class="gray-text">點點全球
+                <a class="popup" rel="terms" href="#">《儲值帳戶使用條款》</a></span>
+            </label>
+        </div>
+    </section>  
 </div>
 
 <!-- 開啟自動儲值？ -->
@@ -162,6 +184,82 @@
             <div class="btns">
                 <a class="orange-btn popup-close">確定</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- 服務條款 -->
+<div class="popup-theme" id="terms">
+    <div class="popup-container">
+        <div class="overlay-bg"></div>
+
+        <div class="popup-content">
+            <a class="popup-close-x"><i class="icon-close fa-solid fa-xmark"></i></a>
+
+            <h3 style="font-size: 20px;">點點全球 儲值帳戶使用條款</h3>
+            <p class="gray-text" style="margin-top: 0; font-size: 12px;">最後更新於：2022/12/01</p>
+            <p class="gray-text">請仔細閱讀此使用條款，以下描述了適用於您的儲值帳戶之條款和條件。 經由購買、儲值或使用您的 儲值帳戶，即表示您同意以下條款內容。</p>
+            <p class="gray-text">您同意我們可以在 點點全球股份有限公司網站、LINE官方帳號/小程式 上公佈此條款之修改、揭露相關內容，並於公佈時即生效。若您開始使用儲值帳戶，則表示您確定接受此使用條款以及一切此類變更或修改，因此建議您不定期仔細閱讀這些使用條款和使用政策，以便了解適用於儲值帳戶各條款和細則。若您不同意這些使用條款，您必須停止使用儲值帳戶。</p>
+
+            <h3><b>儲值帳戶介紹</b></h3>
+            <p class="gray-text">儲值帳戶是由點點全球股份有限公司所發行，可以使用來支付點點全球-快一點服務平台相關服務，例如顧客驗證簡訊、會員驗證簡訊、物流費、......等等<br>您可以直接於快一點管理後台中開通並且儲值</p>
+            
+            <h3><b>儲值帳戶使用</b></h3>
+            <ol>
+                <li>一點價值新台幣一元</li>
+                <li>自動儲值 : 甲方可設定指定級距，當帳戶餘額低於指定級距，即自動使用甲方所綁定之信用卡，自動扣款儲值指定金額</li>
+                <li>每次儲值須選擇指定面額</li>
+                <li>儲值帳戶資訊會在您付款成功後48小時內更新</li>
+                <li>儲值點數（不含贈送點數）為禮券預收款，為保障消費者權益，將其收取之禮券面額款項交付信託予發行人委託之信託銀行，依法由其提供至少一年之信託保管。</li>
+                <li>禮券預收款之履約均依禮券定型化契約應記載及不得記載事項規定辦理。</li>
+                <li>儲值帳戶使用範圍 (若有更新請依官網為主)<br>
+                    顧客點餐認證簡訊 : 1則 扣 1點<br>
+                    會員認證簡訊 : 1則 扣 1點<br>
+                    GIT智慧物流 : 依實際產生之物流費用扣點</li>
+                <li>若您儲值帳戶小於0，則GIT智慧物流服務與會員認證簡訊將無法使用．(顧客仍可以點餐)</li>
+            </ol>
+
+            <h3><b>儲值帳戶退款</b></h3>
+            <ol>
+                <li>若您在儲值付款成功後的48小時內，可免手續費取消並退款該筆儲值交易．但若因您的原因，導致我們無法退款至您使用之信用卡或您當初不是使用信用卡付款，那我們將收取 $30 匯款手續費</li>
+                <li>若您在儲值付款成功後的48小時後需取消儲值帳戶並且退款，則會產生手續費並直接從餘額扣除。手續費之扣款規則如下 :<br>
+                    帳戶餘額 5% (未稅)<br>
+                    匯款手續費 新台幣 $30 元整</li>
+            </ol>
+
+            <h3><b>個人資料保護</b></h3>
+            <p class="gray-text">點點全球為提供給您更多完善及多元之服務及商品，對於您所提供予星巴克之個人資料，將依個人資料保護法之規定來使用、保管您之個人資料，並維護您的隱私權。同時，本網站在此對於您個人資料之使用蒐集將依下列聲明為利用、管理。</p>
+            <ul>
+                <li><b>客戶資料之使用目的</b><br>
+                    您的個人資料，我們將依您提供資料時所授權使用的目的進行服務提供。</li>
+                <li><b>客戶資料蒐集方式、利用範圍</b>
+                    當您使用點點全球服務時，本網站基於服務之提供，將請您填寫相關資料，而取得您的基本資料。點點全球僅將您的該些資料使用在您所需的個別服務上，並經您同意，提供您所需的行銷活動及相關優惠訊息給您。</li>
+                <li><b>客戶資料使用期間、使用區域</b><br>
+                    點點全球將持續使用您提供的個人資料直至您提出停止使用為止。您的個人資料使用區域僅限於台灣地區內使用。</li>
+                <li><b>客戶資料分類及項目</b><br>
+                    點點全球依所提供之服務需要，可能需請您提供的個人資料種類，包括基本資料、帳務資料，分類標準如下：<br>
+                （一）基本資料：包括姓名、電話及電子郵件信箱等資料。<br>
+                （二）帳務資料：包括帳戶號碼或類似功能號碼等資料。</li>
+                <li><b>客戶資料儲存及保管方式</b><br>
+                    您的個人資料均被嚴密地保存在本公司的資料庫系統中。同時，任何人均需在本公司訂定之資料授權管理規範下，進行資料之取得與使用，而不在授權範圍內之任何人，均不得亦無法通過授權控管系統而取得資料。</li>
+                <li><b>資料安全及保護方法</b><br>
+                    我們以 Secure Sockets Layer（SSL）機制進行資料傳輸的加密，並已加裝防火牆防止不法入侵，以及應用亂碼化方式儲存密碼，避免您的個人資料遭到非法存取。</li>
+                <li><b>客戶資料揭露對象</b><br>
+                    客戶資料僅限於點點全球提供服務系統服務之目的，或其他經客戶所允許的範圍內使用，不會非法對外進行揭露。</li>
+                <li><b>客戶資料變更修改方式</b><br>
+                    如果您的個人資料有變更，您可自行於快一點管理後台進行登入更正。</li>
+            </ul>
+
+            <h3><b>其他事項</b></h3>
+            <ul>
+                <li>發行機構：點點全球股份有限公司</li>
+                <li>負責人：謝瑞庭</li>
+                <li>統一編號：85111436</li>
+                <li>聯絡地址：台北市松山區民生東路3段107巷6號2樓B區</li>
+                <li>所收取之儲值金額依法由永豐商業銀行提供價金保管之保證</li>
+                <li>本說明書未盡事宜，請參閱點點全球網站公告或電洽顧客服務中心</li>
+                <li>本公司保有對儲值帳戶之服務說明內容及行銷活動之解釋、修改、調整等相關權利</li>
+            </ul>
         </div>
     </div>
 </div>
