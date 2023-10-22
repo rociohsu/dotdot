@@ -1,0 +1,264 @@
+.top-bar {
+    .nav.left { width: fit-content; }
+    .header__right { display: flex; justify-content: flex-end; align-items: center; text-align: right; gap: 5px;
+        .profile__sub-name { display: block; margin-bottom: -5px; font-size: 12px; color: var(--color-dark); }
+        .profile__name { display: block; font-size: 14px; }
+        .profile__img { width: 40px; height: 40px; border-radius: 99px; border: 1px solid var(--color-border); }
+    }
+}
+
+/* popup 共用設定 */
+.pop { width: 100%; height: 100%; padding: 10px; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.5); display: none; align-items: flex-end; justify-content: center; z-index: 8;
+    &.pop--nobg { background-color: rgba(0, 0, 0, 0); }
+    &.pop--full { padding: 70px 0 0;
+        .pop__body { border-radius: 20px 20px 0 0; }}
+    &.pop--center { align-items: center;
+        .pop__body { max-width: 500px; /* overflow-y: visible; */ }}
+    &.pop--top { padding: 75px 15px 15px 15px; align-items: flex-start; 
+        .pop__body { max-width: 500px; /* overflow-y: visible; */ animation-name: popupup; border-radius: 20px; box-shadow: -10px 0px 10px 0px rgba(55, 84, 170, 0.05), 0px 0px 10px 0px rgba(55, 84, 170, 0.20); }}
+    .pop__body { width: 100%; max-width: 1024px; max-height: 100%; padding: 20px; border-radius: 20px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 20px; background-color: white; overflow-y: auto; animation-name: popup; animation-duration: 0.5s; animation-iteration-count: 1;
+        .pop__close { width: 30px; height: 30px; min-height: 30px; margin: 0 -5px -45px auto; border-radius: 99px; top: -5px; position: sticky; display: flex; align-items: center; justify-content: center; color: var(--color-light); background-color: rgba(255, 255, 255, 0.75); z-index: 1;
+            &.pop__close--fixed { margin: 0; top: 17px; right: 17px; position: fixed; background-color: rgba(0,0,0,0.9); box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+                i, svg { color: var(--color-white); }}}
+        .pop__icons { width: 100%; display: flex; justify-content: center; margin: -70px 0 0 0;
+            .pop__icon { width: 100px; height: 100px; border: 8px solid var(--color-orange); border-radius: 99px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bolder;  background-color: var(--color-white); box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);
+                i, svg { color: var(--color-orange); }}
+            .pop__icon--green { border-color: var(--color-green);
+                i, svg { color: var(--color-green); }}
+            .pop__icon--red { border-color: var(--color-red);
+                i, svg { color: var(--color-red); }}}
+        .pop__title { display: block; width: 100%; font-size: 20px; font-weight: bold; color: var(--color-dark); text-align: left; }
+        .pop__title__fs { font-size: 20px; color: var(--color-darker); font-weight: 500; }
+        .pop__title + .pop__title__fs { margin-top: -20px; }
+        .pop__content { margin-top: -20px; font-size: 20px; color: var(--color-darker) }
+        .pop__actions { width: 100%; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+        .pop__action { width: 100%; height: 50px; padding: 0 20px; border-radius: 30px; gap: 10px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 20px; background-color: var(--color-orange); }
+        .pop__action--green { background-color: var(--color-green); }
+        .pop__action--minor { color: var(--color-darker); background-color: var(--color-bggray); }
+    }
+}
+@keyframes popup { 0% { margin-bottom: -100vh; opacity: 0; } 50% { opacity: 1; } 100% { margin-bottom: 0; opacity: 1; }}
+@keyframes popdown { 0% { margin-bottom: 0; opacity: 1; } 50% { opacity: 1; } 100% { margin-bottom: -100vh; opacity: 0; }}
+@keyframes popupup { 0% { margin-top: -100vh; opacity: 0; } 50% { opacity: 1; } 100% { margin-top: 0; opacity: 1; }}
+
+/* 右上選單彈出popup切換公司 */
+.pop--top .pop__body { padding: 40px 20px !important;
+    .current-company {
+        display: flex; flex-flow: wrap; flex-direction: column; justify-content: center; align-items: center;
+        .current-company__logo { display: flex; flex-flow: nowrap; justify-content: center; align-items: center; width: 80px; height: 80px; border: 2px solid var(--color-border); border-radius: 99em; overflow: hidden;
+            > img { display: block; width: 100%; height: auto; }
+        }
+        .current-company__name { margin-top: 3px; font-size: 16px; font-weight: bold; text-align: center; }
+    }
+
+    .other-list { width: 100%; display: flex; flex-flow: wrap; flex-direction: column; justify-content: center; align-items: center; gap: 10px;
+        .other-list__item { width: 100%; padding: 10px; display: flex; flex-flow: nowrap; justify-content: flex-start; align-items: center; gap: 10px; border-radius: 10px;
+            &:hover { background: var(--color-bggray); }
+
+            .other-list__item__logo { display: flex; flex-flow: nowrap; justify-content: center; align-items: center; width: 30px; height: 30px; border: 2px solid var(--color-border); border-radius: 99em; overflow: hidden;
+                > img { display: block; width: 100%; height: auto; }
+                > i { color: var(--color-dark); font-size: 14px; }
+            }
+            .other-list__item__name { width: calc(100% - 40px); color: var(--color-darker); font-weight: 600;
+                &.add { color: var(--color-darker); font-weight: normal; }
+                &.logout { color: var(--color-darker); font-weight: normal; }
+            }  
+        }
+    }
+}
+
+/* 左上彈出主要選單 */
+.pop--top .pop__body { padding: 40px 20px !important;
+    .main-menu { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr;
+        > a { padding: 15px; text-align: center; }
+    }
+}
+
+/* form元件共用 */
+.apply__input { position: relative; width: 100%; margin: 20px auto; display: flex; flex-flow: wrap; justify-content: space-between; align-items: center; gap: 2px;
+    .title { width: 100%; font-size: 14px; font-weight: bold; }
+    .content { width: 100%; font-size: 14px; color: var(--color-dark); }
+    .fc-blue { color: var(--color-blue); }
+    .check { position: absolute; right: 0; top: 0; display: flex; flex-flow: nowrap; align-items: center; color: var(--color-regular); font-weight: 600;
+        input { width: 20px; height: 20px; margin-left: 3px; border-color: var(--color-regular); }
+    }
+    .input { position: relative; width: 100%; height: 44px; margin: 2px 0; display: flex; align-items: center;
+        input { width: 100%; height: 100%; padding: 0 10px; font-size: 16px; border: solid 2px var(--color-border); border-radius: 10px; }
+        input:focus { -webkit-text-fill-color: var(--color-regular); border-color: var(--color-regular); }
+    }
+    .select { position: relative; width: 100%; height: 44px; margin: 2px 0; display: flex; align-items: center;
+        select { width: 100%; height: 100%; padding: 0 35px 0 10px; color: var(--color-darker); font-size: 16px; border: solid 2px var(--color-border); border-radius: 10px; 
+            option:disabled { color: var(--color-light); }
+        }
+        select:focus { -webkit-text-fill-color: var(--color-regular); border-color: var(--color-regular); }
+        i { display: flex; justify-content: center; align-items: center; position: absolute; width: 30px; height: 30px; right: 5px; top: 0; bottom: 0; margin: auto 0; pointer-events: none; color: var(--color-dark); }
+        select:focus + i { color: var(--color-regular); }
+    }
+    .file { position: relative; width: 100%; height: auto; margin: 2px 0; display: flex; align-items: center;
+        input { display: none; }
+        label { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; 
+            width: 100%; padding: 7px 10px; margin-top: 5px; border-radius: 10px; background: var(--color-bggray);
+            span { color: var(--color-regular); font-size: 16px; font-weight: 500; }
+            i { color: var(--color-regular); }
+            img { display: block; max-width: 100%; height: auto; margin: 5px 0; }
+            img + i { color: var(--color-green); }
+        }
+    }
+    .file.error label { border: 2px solid var(--color-red);
+        i { display: none; }
+    }
+    .download { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; 
+        width: 100%; padding: 7px 10px; margin-top: 5px; border-radius: 10px; background: var(--color-bggray);
+        span { color: var(--color-regular); font-size: 16px; font-weight: 500; }
+        i { color: var(--color-regular); }
+    }
+    .column2 { width: calc(50% - 2px); }
+    .column3 { width: calc(33.33% - 2px); }
+    .error input, .error select { -webkit-text-fill-color: var(--color-red); border-color: var(--color-red); }
+    .error i { color: var(--color-red); }
+    .error:not(.select)::after { content: ''; display: block; position: absolute; 
+        width: 18px; height: 18px; right: 10px; top: 0; bottom: 0; margin: auto 0; 
+        background: url('@/assets/icons/triangle-exclamation.svg') no-repeat center; background-size: contain; 
+    }
+    .remark { font-size: 14px; color: var(--color-red); }
+}
+
+.apply__ckeck-list { width: 100%; margin: 20px auto;
+    .title { display: block; margin-bottom: -5px; font-size:12px; font-weight: bold; }
+    .content { width: 100%; font-size: 14px; color: var(--color-dark); }
+    .apply__ckeck-list__group { margin: 10px 0; padding-bottom: 10px; border-bottom: 1px solid var(--color-light); 
+        .apply__ckeck-list__option {
+            input { display: none; }
+            label { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; padding: 5px 0;
+                > span { display: inline-flex; flex-flow: nowrap; align-items: center; width: 100%; font-weight: 600; font-size: 14px;
+                    i { display: inline-block; width: 20px; height: 20px; margin-right: 5px; border-radius: 5px; background: var(--color-border); }
+                    .fs { margin-left: 5px; font-weight: normal; }
+                }
+                .payments-icons { width: fit-content; 
+                    span:not(.spacer-line) { width: 40px; background: var(--color-bggray); }
+                }
+            }
+            input:checked + label {
+                span i { background: var(--color-orange) url("../images/check-solid-w.svg") no-repeat center; background-size: 60%; }
+            }
+            .fs { font-size:12px; color: var(--color-dark); }
+        }
+        .apply__ckeck-list__option.second { margin-left: 25px; 
+            label > span { font-size:12px; }
+        }
+    }
+    .apply__ckeck-list__group:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+}
+
+.apply__radio-list { width: 100%; margin: 20px auto;
+    .title { display: block; margin-bottom: -5px; font-size:12px; font-weight: bold; }
+    .content { width: 100%; font-size: 14px; color: var(--color-dark); }
+    .apply__radio-list__group { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0;
+        .apply__radio-list__option { width: 100%;
+            input { display: none; }
+            label { display: block; width: 100%; padding: 10px; text-align: center; border-radius: 10px; border: 2px solid var(--color-border); }
+            input:checked + label { border-color: var(--color-green); }
+        }
+    }
+}
+
+.apply__open-pop { width: 100%; margin: 20px auto;
+    .title { display: block; font-size: 14px; font-weight: bold; }
+    .content { width: 100%; font-size: 14px; color: var(--color-darker); }
+    button { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; 
+        width: 100%; padding: 7px 10px; margin-top: 5px; border-radius: 10px; background: var(--color-white); border: solid 2px var(--color-border);
+        span { color: var(--color-regular) !important; font-size: 16px; font-weight: 500; }
+        i { color: var(--color-dark); }
+    }
+}
+
+/* switch開關共用 */
+.setting__switch { width: 36px;
+    input[type=checkbox] { display: none; }
+    input[type=checkbox] + label { display: block; position: relative; width: 36px; height: 21px; background: var(--color-light); border: 2px solid var(--color-light); border-radius: 99em; 
+        .switch__inner { display: block;
+            width: 200%; margin-left: -100%;
+            transition: margin 0.3s ease-in 0s;
+        }
+        .switch__switch { display: block; position: absolute;
+            width: 16px; height: 16px; margin: auto; top: 0; bottom: 0; right: 16px;
+            background: #FFFFFF; border-radius: 99em; transition: all 0.3s ease-in 0s;
+        }
+    }
+
+    input[type=checkbox]:checked + label {
+        background: var(--color-green); border-color: var(--color-green);
+        .switch__inner { margin-left: 0; }
+        .switch__switch { right: 0px; }
+    }
+    input[type=checkbox]:disabled + label { cursor: default; }
+}
+
+.printer-counter { width: 100%; max-width: 500px; margin: 0 auto; padding: 80px 20px;
+    .printer-item { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center;
+        padding: 10px 15px; margin-bottom: 20px; gap: 10px;
+        background: var(--color-bggray); border-radius: 20px;
+
+        .printer-item__info { flex: 1;
+            .printer-item__name { color: var(--color-darker); font-size: 16px; }
+            .printer-item__id { color: var(--color-dark); font-size: 14px; }
+        }
+        .printer-item__state { font-size: 14px; white-space: nowrap; }
+        .printer-item__state.stop { color: var(--color-red); }
+        i { color: var(--color-light); }
+        .icon-printer { display: inline-block; width: 40px; height: 40px; background: url('../images/printer.svg') no-repeat center; background-size: 100%; }
+    }
+
+    .printer-ex { width: 100%; max-width: 200px; margin: 0 auto; 
+        > img { width: 100%; height: auto; }
+    }
+    .printer1 { margin-bottom: -40px; }
+    .setting__switch { margin: 10px auto; }
+
+    .clear-button { text-align: center;
+        button { display: inline-block; width: fit-content; padding: 0 20px; margin-bottom: 5px; color: var(--color-white); font-size: 14px; background: var(--color-red); }
+        .fs { color: var(--color-dark); font-size: 12px; }
+    }
+}
+
+.printer-none { padding: 15dvh 0; text-align: center; color: var(--color-light); font-size: 24px; 
+    img { width: 100%; max-width: 100px; height: auto; }
+}
+
+/* popup 出單機新增成功or失敗 */
+.pop--printer-add-state .pop__body { overflow: inherit; 
+    .pop__content { color: var(--color-darker); text-align: center; font-weight: 500;
+        .fs { color: var(--color-light); font-size: 14px; font-weight: normal; 
+            a { color: var(--color-blue); font-size: 14px; text-decoration: underline !important; }
+        }
+    }
+}
+
+/* popup 音量&出單紙模板 */
+.pop--select {
+    .pop__body { max-width: 500px; padding: 0 20px; background: var(--color-orange); }
+    .pop__close { top: 15px !important; color: rgba(255, 255, 255, 0.5) !important; background: none !important; }
+    .pop__title { position: sticky; width: 100%; top: 0; left: 0; padding: 15px 0; 
+        font-size: 18px !important; font-weight: normal !important; color: var(--color-white) !important; 
+        background: var(--color-orange); z-index: 0; }
+    .apply__radio-list { width: 100%; margin: -20px auto 20px auto;
+        .apply__radio-list__group { flex-flow: column; gap: 0; padding: 0;
+            .apply__radio-list__option { 
+                label { color: var(--color-white); text-align: center; border-radius: none; border: none; opacity: 0.5; }
+                input:checked + label { font-weight: 600; opacity: 1; }
+            }
+        }
+        .apply__radio-list__group.template {
+            .apply__radio-list__option { margin-bottom: 20px;
+                label { display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; opacity: 1;
+                    border: 2px solid rgba(255, 255, 255, 0.5); 
+                    .name { color: rgba(255, 255, 255, 0.5); font-size: 18px; font-weight: normal; }
+                    .sample { width: 100%; max-width: 120px; }
+                }
+                input:checked + label { font-weight: bold; border-color: var(--color-white); 
+                    .name { color: var(--color-white); }
+                }
+            }
+        }
+    }
+}
