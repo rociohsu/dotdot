@@ -68,6 +68,14 @@
             </button>
         </div>
 
+        <div class="apply__open-pop">
+            <span class="title">音效</span>
+            <button>
+                <span>中文</span>
+                <i class="fa-solid fa-angle-down fa-lg"></i>
+            </button>
+        </div>
+
         <div class="apply__input">
             <span class="title">出單機張數</span>
             <div class="input">
@@ -86,6 +94,8 @@
         <div class="clear-button">
             <button>清空佇列</button>
             <div class="fs">刪除已存在的任務</div>
+
+            <button class="btn-red">移除出單機</button>
         </div>
 
         <div class="bottom-button">
@@ -94,6 +104,7 @@
     </section><!-- END .printer-counter -->
 </div>
 
+<!-- 收銀台出單機 儲存成功 -->
 <section class="pop pop--center pop--printer-add-state" style="display: flex;">
     <div class="pop__body">
         <div class="pop__icons">
@@ -114,6 +125,28 @@
     </div>
 </section>
 
+<!-- 確認清空佇列？ -->
+<section class="pop pop--center pop--printer-add-state" style="display: flex;">
+    <div class="pop__body">
+        <div class="pop__icons">
+            <div class="pop__icon pop__icon--red">
+                <i class="fa-solid fa-exclamation fa-2xl"></i>
+            </div>
+        </div>
+
+        <span class="pop__title"></span>
+        <span class="pop__content">
+            <div>確認清空佇列？</div>
+        </span>
+
+        <div class="pop__actions">
+            <a class="pop__action pop__action--minor" href="#">取消</a>
+            <a class="pop__action pop__action--red" href="setting.html">確認清空</a>
+        </div>
+    </div>
+</section>
+
+<!-- 收銀台出單機 已清空佇列 -->
 <section class="pop pop--center pop--printer-add-state" style="display: flex;">
     <div class="pop__body">
         <div class="pop__icons">
@@ -134,6 +167,50 @@
     </div>
 </section>
 
+<!-- 確認移除收銀台出單機？ -->
+<section class="pop pop--center pop--printer-add-state" style="display: flex;">
+    <div class="pop__body">
+        <div class="pop__icons">
+            <div class="pop__icon pop__icon--red">
+                <i class="fa-solid fa-exclamation fa-2xl"></i>
+            </div>
+        </div>
+
+        <span class="pop__title"></span>
+        <span class="pop__content">
+            <div>確認移除收銀台出單機？</div>
+            <div class="fs">序號：12345678</div>
+        </span>
+
+        <div class="pop__actions">
+            <a class="pop__action pop__action--minor" href="#">取消</a>
+            <a class="pop__action pop__action--red" href="setting.html">確認移除</a>
+        </div>
+    </div>
+</section>
+
+<!-- 收銀台出單機 已移除成功 -->
+<section class="pop pop--center pop--printer-add-state" style="display: flex;">
+    <div class="pop__body">
+        <div class="pop__icons">
+            <div class="pop__icon pop__icon--green">
+                <i class="fa-solid fa-check fa-2xl"></i>
+            </div>
+        </div>
+
+        <span class="pop__title"></span>
+        <span class="pop__content">
+            <div>收銀台出單機</div>
+            <div>已移除成功</div>
+        </span>
+
+        <div class="pop__actions">
+            <a class="pop__action" href="index.html">確定</a>
+        </div>
+    </div>
+</section>
+
+<!-- 音量 -->
 <section class="pop pop--full pop--select" style="display: flex;">
     <div class="pop__body">
         <a class="pop__close"><i class="fa-solid fa-xmark fa-lg"></i></a>
@@ -169,6 +246,42 @@
     </div>
 </section>
 
+<!-- 音效 -->
+<section class="pop pop--full pop--select" style="display: flex;">
+    <div class="pop__body">
+        <a class="pop__close"><i class="fa-solid fa-xmark fa-lg"></i></a>
+        <span class="pop__title">音效</span>
+        <div class="apply__radio-list">
+            <div class="apply__radio-list__group effects">
+                <div class="apply__radio-list__option">
+                    <input type="radio" id="effects1" name="effects" checked>
+                    <label for="effects1">
+                        <div class="name">中文</div>
+                        <div class="desc">您有新的訂單，請趕緊處理</div>
+                    </label>
+                </div>
+
+                <div class="apply__radio-list__option">
+                    <input type="radio" id="effects2" name="effects">
+                    <label for="effects2">
+                        <div class="name">English</div>
+                        <div class="desc">You have new order.</div>
+                    </label>
+                </div>
+
+                <div class="apply__radio-list__option">
+                    <input type="radio" id="effects3" name="effects">
+                    <label for="effects3">
+                        <div class="name">日本語</div>
+                        <div class="desc">You have new order.</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 出單紙模板 -->
 <section class="pop pop--full pop--select" style="display: flex;">
     <div class="pop__body">
         <a class="pop__close"><i class="fa-solid fa-xmark fa-lg"></i></a>
