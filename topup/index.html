@@ -21,7 +21,6 @@
 <link rel="stylesheet" href="../css/standard.css">
 
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-<!-- <link href="../css/fontawesome-free-6.3.0-web/css/all.css" rel="stylesheet"> <!-- Awesome Icon --> -->
 <link href="../css/fontawesome-free-6.3.0-web/css/all.css" rel="stylesheet"> <!-- Awesome Icon -->
 <script type="text/javascript" src="../js/layout.js"></script>
 </head>
@@ -30,7 +29,12 @@
 <div class="body-container bg-gray">
     <section class="topup">
         <div class="top-bar bg-orange">
-            <h1>儲值金</h1>
+
+            <div class="nav left">
+                <a href="javascript:void(0);"><i class="icon-menu"></i></a>
+                <span class="title">儲值金</span>
+            </div>
+            <!-- <h1>儲值金</h1> -->
 
             <div class="user-account">
                 <div class="user-name">麥町總部</div>
@@ -64,7 +68,7 @@
                     <a href="setting.html">通知設定</a>
                     <a class="popup" rel="auto-topup">自動儲值</a>
                 </div>
-                <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+                <a class="add-btn" href="topup.html"><span>前往儲值</span><i class="fa-solid fa-plus"></i></a>
             </div><!-- END .store-list -->
 
             <div class="store-list">
@@ -77,7 +81,7 @@
                     <a href="setting.html">通知設定</a>
                     <a class="popup" rel="auto-topup-open">自動儲值</a>
                 </div>
-                <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+                <a class="add-btn" href="topup.html"><span>前往儲值</span><i class="fa-solid fa-plus"></i></a>
             </div><!-- END .store-list -->
 
             <div class="store-list">
@@ -90,7 +94,7 @@
                     <a href="setting.html">通知設定</a>
                     <a class="popup" rel="auto-topup-open">自動儲值</a>
                 </div>
-                <a class="add-btn" href="topup.html"><i class="fa-solid fa-circle-plus"></i></a>
+                <a class="add-btn" href="topup.html"><span>前往儲值</span><i class="fa-solid fa-plus"></i></a>
             </div><!-- END .store-list -->
 
             <div class="store-list disabled">
@@ -103,7 +107,7 @@
                     <a>通知設定</a>
                     <a>自動儲值</a>
                 </div>
-                <a class="add-btn"><i class="fa-solid fa-circle-plus"></i></a>
+                <a class="add-btn"><span>前往儲值</span><i class="fa-solid fa-plus"></i></a>
             </div><!-- END .store-list -->
         </div><!-- END .main-container -->
 
@@ -268,6 +272,53 @@
         </div>
     </div>
 </div>
+
+<!-- 主選單 -->
+<section class="pop pop--nobg pop--top" style="display: flex;">
+    <div class="pop__body">
+        <div class="main-menu">
+            <a href="../main.html">
+                <i class="icon-dotdot-cloud"></i>
+                <div>點點雲</div>
+            </a>
+
+            <a href="#">
+                <i class="icon-quickclick"></i>
+                <div>快一點</div>
+            </a>
+
+            <a href="#">
+                <i class="icon-purchase"></i>
+                <div>聯合採購</div>
+            </a>
+
+            <a href="../printer/index.html">
+                <i class="icon-printer"></i>
+                <div>出單機</div>
+            </a>
+
+            <a href="../quickpay/index.html">
+                <i class="icon-quickpay"></i>
+                <div>點點付</div>
+            </a>
+
+            <a href="../topup/index.html">
+                <i class="icon-quickpoint"></i>
+                <div>儲值金</div>
+            </a>
+
+            <a href="#">
+                <i class="icon-report"></i>
+                <div>360報表</div>
+            </a>
+
+            <a href="#">
+                <i class="icon-moreclick"></i>
+                <div>多一點</div>
+            </a>
+        </div>
+    </div>
+</section>
 
 </body>
  

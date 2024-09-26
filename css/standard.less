@@ -76,6 +76,10 @@ i.icon-easywallet { background-image: url('@{img-path}easywallet.svg'); }
 i.icon-jkopay { background-image: url('@{img-path}jkopay.svg'); background-size: 80%; }
 i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 
+i.icon-store-none { display: inline-block; width: 120px; height: 120px;
+    background-repeat: no-repeat; background-position: center; background-size: contain; 
+    background-image: url('@{img-path}store-none.svg'); }
+
 .money { display: inline-flex; flex-flow: nowrap; align-items: center; justify-content: center; vertical-align: middle;
     color: var(--color-darker); font-weight: bold;
 
@@ -283,6 +287,74 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
     }
 }
 
+/* popup 共用設定 */
+.pop { width: 100%; height: 100%; padding: 10px; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.5); display: none; align-items: flex-end; justify-content: center; z-index: 8;
+    &.pop--nobg { background-color: rgba(0, 0, 0, 0); }
+    &.pop--full { padding: 70px 0 0;
+        .pop__body { border-radius: 20px 20px 0 0; }}
+    &.pop--center { align-items: center;
+        .pop__body { max-width: 500px; /* overflow-y: visible; */ }}
+    &.pop--top { padding: 75px 15px 15px 15px; align-items: flex-start; 
+        .pop__body { max-width: 500px; /* overflow-y: visible; */ animation-name: popupup; border-radius: 20px; box-shadow: -10px 0px 10px 0px rgba(55, 84, 170, 0.05), 0px 0px 10px 0px rgba(55, 84, 170, 0.20); }}
+    .pop__body { width: 100%; max-width: 1024px; max-height: 100%; padding: 20px; border-radius: 20px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 20px; background-color: white; overflow-y: auto; animation-name: popup; animation-duration: 0.5s; animation-iteration-count: 1;
+        .pop__close { width: 30px; height: 30px; min-height: 30px; margin: 0 -5px -45px auto; border-radius: 99px; top: -5px; position: sticky; display: flex; align-items: center; justify-content: center; color: var(--color-light); background-color: rgba(255, 255, 255, 0.75); z-index: 1;
+            &.pop__close--fixed { margin: 0; top: 17px; right: 17px; position: fixed; background-color: rgba(0,0,0,0.9); box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+                i, svg { color: var(--color-white); }}}
+        .pop__icons { width: 100%; display: flex; justify-content: center; margin: -70px 0 0 0;
+            .pop__icon { width: 100px; height: 100px; border: 8px solid var(--color-orange); border-radius: 99px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bolder;  background-color: var(--color-white); box-shadow: 0px 5px 10px rgba(55, 84, 170, 0.2);
+                i, svg { color: var(--color-orange); }}
+            .pop__icon--green { border-color: var(--color-green);
+                i, svg { color: var(--color-green); }}
+            .pop__icon--red { border-color: var(--color-red);
+                i, svg { color: var(--color-red); }}}
+        .pop__title { display: block; width: 100%; font-size: 20px; font-weight: bold; color: var(--color-dark); text-align: left; }
+        .pop__title__fs { font-size: 20px; color: var(--color-darker); font-weight: 500; }
+        .pop__title + .pop__title__fs { margin-top: -20px; }
+        .pop__content { margin-top: -20px; font-size: 20px; color: var(--color-darker) }
+        .pop__actions { width: 100%; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+        .pop__action { width: 100%; height: 50px; padding: 0 20px; border-radius: 30px; gap: 10px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 20px; background-color: var(--color-orange); }
+        .pop__action--green { background-color: var(--color-green); }
+        .pop__action--red { background-color: var(--color-red); }
+        .pop__action--minor { color: var(--color-darker); background-color: var(--color-bggray); }
+    }
+}
+@keyframes popup { 0% { margin-bottom: -100vh; opacity: 0; } 50% { opacity: 1; } 100% { margin-bottom: 0; opacity: 1; }}
+@keyframes popdown { 0% { margin-bottom: 0; opacity: 1; } 50% { opacity: 1; } 100% { margin-bottom: -100vh; opacity: 0; }}
+@keyframes popupup { 0% { margin-top: -100vh; opacity: 0; } 50% { opacity: 1; } 100% { margin-top: 0; opacity: 1; }}
+
+/* 左上彈出主要選單 */
+.pop--top .pop__body { padding: 40px 20px !important;
+    .main-menu { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr;
+        > a { padding: 15px; text-align: center; }
+    }
+}
+
+/* 右上選單彈出popup切換公司 */
+.pop--top .pop__body { padding: 40px 20px !important;
+    .current-company {
+        display: flex; flex-flow: wrap; flex-direction: column; justify-content: center; align-items: center;
+        .current-company__logo { display: flex; flex-flow: nowrap; justify-content: center; align-items: center; width: 80px; height: 80px; border: 2px solid var(--color-border); border-radius: 99em; overflow: hidden;
+            > img { display: block; width: 100%; height: auto; }
+        }
+        .current-company__name { margin-top: 3px; font-size: 16px; font-weight: bold; text-align: center; }
+    }
+
+    .other-list { width: 100%; display: flex; flex-flow: wrap; flex-direction: column; justify-content: center; align-items: center; gap: 10px;
+        .other-list__item { width: 100%; padding: 10px; display: flex; flex-flow: nowrap; justify-content: flex-start; align-items: center; gap: 10px; border-radius: 10px;
+            &:hover { background: var(--color-bggray); }
+
+            .other-list__item__logo { display: flex; flex-flow: nowrap; justify-content: center; align-items: center; width: 30px; height: 30px; border: 2px solid var(--color-border); border-radius: 99em; overflow: hidden;
+                > img { display: block; width: 100%; height: auto; }
+                > i { color: var(--color-dark); font-size: 14px; }
+            }
+            .other-list__item__name { width: calc(100% - 40px); color: var(--color-darker); font-weight: 600;
+                &.add { color: var(--color-darker); font-weight: normal; }
+                &.logout { color: var(--color-darker); font-weight: normal; }
+            }  
+        }
+    }
+}
+
 /* 主要入口頁 */
 .top-bar { position: fixed; display: flex; flex-flow: nowrap; justify-content: space-between; align-items: center; width: 100%; max-width: 820px; margin: 0 auto; padding: 15px 20px; margin: 0 auto; top: 0; left: 0; right: 0; background: var(--color-white);
     z-index: 2;
@@ -296,11 +368,13 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         .store-name { max-width: 240px; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
     }
     .nav { display: inline-flex; justify-content: flex-end; align-items: center;
-        a { display: block; position: relative; margin-left: 15px;
+        &.nav-menu { width: fit-content !important; margin-right: 5px; }
+        a { display: flex; align-items: center; gap: 5px; position: relative; margin-left: 15px;
             color: var(--color-blue); font-size: 14px; line-height: 14px;
+            span { font-size: 14px; }
         }
-        .headpic { width: 30px; height: 30px; .rounded-corners (99em); overflow: hidden; 
-            > img { width: 100%; height: auto; }
+        .headpic {  overflow: hidden; 
+            > img { width: 30px; height: 30px; .rounded-corners (99em); }
         }
 
         i { color: var(--color-blue); font-size: 30px; }
@@ -330,6 +404,7 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         a { color: var(--color-white); }
         i { color: var(--color-white); }
         i.icon-menu { background: url('@{img-path}menu-w.svg') no-repeat center; }
+        .title { color: var(--color-white); }
     }
 }
 .body-container.full .top-bar { max-width: 100%; }
@@ -400,6 +475,8 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
 }
 
 .main-door {
+    .main-container { min-height: calc(100vh - 60px); display: flex; flex-flow: column; padding-bottom: 0; }
+
     .card-item { position: relative; display: block; width: 100%; max-width: 360px; height: 160px; margin: 0 auto; 
         color: var(--color-blue); text-decoration: none;
         background: url('@{img-path}welcome-bg.png') repeat center; background-size: 80%; .rounded-corners(15px); box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); overflow: hidden;
@@ -422,9 +499,54 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
         .add-btn { position: absolute; right: 5%; bottom: 7%; color: var(--color-white); font-size: 30px; line-height: 100%; background: rgba(246,187,66,1); .rounded-corners(99em); box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); }
     }
 
+    .card-list { position: relative; display: flex; flex-direction: column; align-items: center;
+        > h2 { width: 100%; max-width: 360px; margin-bottom: 10px; color: var(--color-darker); font-size: 18px; font-weight: bold; }
+        .card-all { margin-right: calc(50% - 180px); top: 0; right: 0; gap: 5px; position: absolute; display: flex; align-items: center;
+            > * { color: var(--color-dark); }}
+        .card-items { width: calc(100% + 40px); padding-left: calc(50% - 130px); padding-right: calc(50% - 130px); gap: 10px; display: flex; overflow-y: scroll;
+            .store-list { position: relative; min-width: 300px; padding: 10px 12px 40px 12px; text-align: center; background: var(--color-bggray); border-radius: 20px 50px;
+
+                .status { font-size: 14px; color: var(--color-dark); text-align: left;
+                    .fa-circle { color: var(--color-light); font-size: 11px; }
+                }
+                .status.auto { color: var(--color-darker);
+                    .fa-circle { color: var(--color-green); }
+                }
+            
+                .name { margin: 15px auto 5px auto; font-size: 18px; }
+                .id { margin: 0 auto 10px auto; font-size: 12px; color: var(--color-dark); }
+                .remind { margin-bottom: 10px; }
+                .money { display: flex; flex-flow: nowrap; justify-content: center; align-items: center; margin-bottom: 10px; font-size: 36px; font-weight: normal;
+                    .icon-dollar { width: 30px; height: 30px; }
+                }
+            
+                .link {
+                    > a { display: inline-block; padding: 0 12px 2px 8px; color: var(--color-blue); border-right: 1px solid var(--color-light); }
+                    > a:last-child { border-right: 0; }
+                }
+            
+                .add-btn { position: absolute; right: 10px; bottom: 10px; padding: 0 10px; color: var(--color-white); font-size: 30px; line-height: 100%; gap: 5px; display: flex; align-items: center; background: var(--color-orange); .rounded-corners(99em); box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+                    span { font-size: 12px; color: var(--color-white); }
+                    .fa-plus { font-size: 16px; }}
+            }
+        }
+    }
+
     .item-list { display: flex; flex-flow: wrap; width: 100%; max-width: 360px; margin: 30px auto 0 auto;
         > h2 { width: 100%; margin-bottom: 10px; color: var(--color-darker); font-size: 18px; font-weight: bold; }
         > a { width: 33.3%; padding: 10px; color: var(--color-darker); font-size: 16px; text-align: center; }
+    }
+
+    .store-none { gap: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        .title { font-size: 24px; }
+        .content { margin-top: -20px; font-size: 18px; color: var(--color-dark); }
+        a { width: 150px; height: 50px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--color-white); background-color: var(--color-orange); }}
+
+    .message { margin-left: -20px; margin-top: auto; padding: 20px; gap: 10px; position: relative; display: flex; flex-flow: column; align-items: center; justify-content: center; width: calc(100% + 40px); height: 200px; overflow: hidden;
+        span { width: 100%; max-width: 350px; text-align: right; z-index: 2;
+            &.title { margin-top: 20px; font-size: 36px; }
+            &.content { font-size: 18px; }}
+        .background { margin-left: 100px; position: absolute; top: 20px; width: 1500px; height: 1500px; border-radius: 999px; background: linear-gradient(143deg, rgba(255, 153, 0, 0.50) 5.34%, #F90 50%), var(--color-bww, #FFF); }
     }
 }
 
@@ -630,7 +752,9 @@ i.icon-taiwanpay { background-image: url('@{img-path}taiwanpay.svg'); }
             > a:last-child { border-right: 0; }
         }
     
-        .add-btn { position: absolute; right: 10px; bottom: 10px; color: var(--color-orange); font-size: 30px; line-height: 100%; background: var(--color-white); .rounded-corners(99em); box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); }
+        .add-btn { position: absolute; right: 10px; bottom: 10px; padding: 0 10px; color: var(--color-white); font-size: 30px; line-height: 100%; gap: 5px; display: flex; align-items: center; background: var(--color-orange); .rounded-corners(99em); box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+            span { font-size: 12px; color: var(--color-white); }
+            .fa-plus { font-size: 16px; }}
     }
     .store-list.disabled { opacity: 0.5;
         .link > a { color: var(--color-dark); cursor: text; }
