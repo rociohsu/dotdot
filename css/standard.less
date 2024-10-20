@@ -502,10 +502,12 @@ i.icon-store-none { display: inline-block; width: 120px; height: 120px;
     .card-list { position: relative; display: flex; flex-direction: column; align-items: center;
         > h2 { width: 100%; max-width: 360px; margin-bottom: 10px; color: var(--color-darker); font-size: 18px; font-weight: bold; }
         .card-all { margin-right: calc(50% - 180px); top: 0; right: 0; gap: 5px; position: absolute; display: flex; align-items: center;
+            @media (max-width: 401px) { margin-right: 0; }
             > * { color: var(--color-dark); }}
         .card-items { width: calc(100% + 40px); padding-left: calc(50% - 130px); padding-right: calc(50% - 130px); gap: 10px; display: flex; overflow-y: scroll;
+            @media (max-width: 401px) { padding-left: calc(50% - 105px); padding-right: calc(50% - 105px); }
             .store-list { position: relative; min-width: 300px; padding: 10px 12px 40px 12px; text-align: center; background: var(--color-bggray); border-radius: 20px 50px;
-
+                @media (max-width: 401px) { min-width: 250px; }
                 .status { font-size: 14px; color: var(--color-dark); text-align: left;
                     .fa-circle { color: var(--color-light); font-size: 11px; }
                 }
